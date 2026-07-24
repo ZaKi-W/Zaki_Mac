@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		100000000000000000000001 /* MomentApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000001 /* MomentApp.swift */; };
+		100000000000000000000002 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000002 /* AppModel.swift */; };
+		100000000000000000000003 /* MomentCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000003 /* MomentCommands.swift */; };
+		100000000000000000000004 /* WindowBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000004 /* WindowBehavior.swift */; };
+		100000000000000000000005 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000005 /* Models.swift */; };
+		100000000000000000000006 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000006 /* Persistence.swift */; };
+		100000000000000000000007 /* LegacyMigrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000007 /* LegacyMigrator.swift */; };
+		100000000000000000000008 /* ReminderScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000008 /* ReminderScheduler.swift */; };
+		100000000000000000000009 /* GlobalHotKeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000009 /* GlobalHotKeyManager.swift */; };
+		10000000000000000000000A /* BrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000A /* BrowserController.swift */; };
+		10000000000000000000000B /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000B /* WebViewContainer.swift */; };
+		10000000000000000000000C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000C /* ContentView.swift */; };
+		10000000000000000000000D /* ReminderViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000D /* ReminderViews.swift */; };
+		10000000000000000000000E /* BrowserViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000E /* BrowserViews.swift */; };
+		10000000000000000000000F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000000F /* SettingsView.swift */; };
+		100000000000000000000010 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000010 /* Localization.swift */; };
+		100000000000000000000011 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000011 /* Assets.xcassets */; };
+		100000000000000000000012 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000012 /* Localizable.xcstrings */; };
+		100000000000000000000013 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 500000000000000000000001 /* InfoPlist.strings */; };
+		100000000000000000000014 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000014 /* AppKit.framework */; };
+		100000000000000000000015 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000015 /* WebKit.framework */; };
+		100000000000000000000016 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000016 /* UserNotifications.framework */; };
+		100000000000000000000017 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000017 /* Carbon.framework */; };
+		100000000000000000000018 /* MomentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000018 /* MomentTests.swift */; };
+		100000000000000000000019 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000019 /* XCTest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		600000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 900000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 700000000000000000000001;
+			remoteInfo = Moment;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		200000000000000000000001 /* MomentApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentApp.swift; sourceTree = "<group>"; };
+		200000000000000000000002 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		200000000000000000000003 /* MomentCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommands.swift; sourceTree = "<group>"; };
+		200000000000000000000004 /* WindowBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowBehavior.swift; sourceTree = "<group>"; };
+		200000000000000000000005 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		200000000000000000000006 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		200000000000000000000007 /* LegacyMigrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyMigrator.swift; sourceTree = "<group>"; };
+		200000000000000000000008 /* ReminderScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderScheduler.swift; sourceTree = "<group>"; };
+		200000000000000000000009 /* GlobalHotKeyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHotKeyManager.swift; sourceTree = "<group>"; };
+		20000000000000000000000A /* BrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserController.swift; sourceTree = "<group>"; };
+		20000000000000000000000B /* WebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewContainer.swift; sourceTree = "<group>"; };
+		20000000000000000000000C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		20000000000000000000000D /* ReminderViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderViews.swift; sourceTree = "<group>"; };
+		20000000000000000000000E /* BrowserViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowserViews.swift; sourceTree = "<group>"; };
+		20000000000000000000000F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		200000000000000000000010 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		200000000000000000000011 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		200000000000000000000012 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		200000000000000000000013 /* en InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		200000000000000000000014 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		200000000000000000000015 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		200000000000000000000016 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		200000000000000000000017 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		200000000000000000000018 /* MomentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentTests.swift; sourceTree = "<group>"; };
+		200000000000000000000019 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		20000000000000000000001A /* zh-Hans InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		20000000000000000000001B /* Moment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20000000000000000000001C /* MomentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		300000000000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000014 /* AppKit.framework in Frameworks */,
+				100000000000000000000015 /* WebKit.framework in Frameworks */,
+				100000000000000000000016 /* UserNotifications.framework in Frameworks */,
+				100000000000000000000017 /* Carbon.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		300000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000019 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		400000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				400000000000000000000002 /* Moment */,
+				400000000000000000000009 /* MomentTests */,
+				40000000000000000000000A /* Frameworks */,
+				40000000000000000000000B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		400000000000000000000002 /* Moment */ = {
+			isa = PBXGroup;
+			children = (
+				400000000000000000000003 /* App */,
+				400000000000000000000004 /* Models */,
+				400000000000000000000005 /* Services */,
+				400000000000000000000006 /* Browser */,
+				400000000000000000000007 /* Views */,
+				400000000000000000000008 /* Resources */,
+			);
+			path = Moment;
+			sourceTree = "<group>";
+		};
+		400000000000000000000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000001,
+				200000000000000000000002,
+				200000000000000000000003,
+				200000000000000000000004,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		400000000000000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = ( 200000000000000000000005, );
+			path = Models;
+			sourceTree = "<group>";
+		};
+		400000000000000000000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000006,
+				200000000000000000000007,
+				200000000000000000000008,
+				200000000000000000000009,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		400000000000000000000006 /* Browser */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000000A,
+				20000000000000000000000B,
+			);
+			path = Browser;
+			sourceTree = "<group>";
+		};
+		400000000000000000000007 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000000C,
+				20000000000000000000000D,
+				20000000000000000000000E,
+				20000000000000000000000F,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		400000000000000000000008 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000010,
+				200000000000000000000011,
+				200000000000000000000012,
+				500000000000000000000001,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		400000000000000000000009 /* MomentTests */ = {
+			isa = PBXGroup;
+			children = ( 200000000000000000000018, );
+			path = MomentTests;
+			sourceTree = "<group>";
+		};
+		40000000000000000000000A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				200000000000000000000014,
+				200000000000000000000015,
+				200000000000000000000016,
+				200000000000000000000017,
+				200000000000000000000019,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40000000000000000000000B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20000000000000000000001B,
+				20000000000000000000001C,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		700000000000000000000001 /* Moment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000002;
+			buildPhases = (
+				800000000000000000000001 /* Sources */,
+				300000000000000000000001 /* Frameworks */,
+				800000000000000000000002 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			name = Moment;
+			productName = Moment;
+			productReference = 20000000000000000000001B /* Moment.app */;
+			productType = "com.apple.product-type.application";
+		};
+		700000000000000000000002 /* MomentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A00000000000000000000003;
+			buildPhases = (
+				800000000000000000000003 /* Sources */,
+				300000000000000000000002 /* Frameworks */,
+				800000000000000000000004 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ( 600000000000000000000002 /* PBXTargetDependency */, );
+			name = MomentTests;
+			productName = MomentTests;
+			productReference = 20000000000000000000001C /* MomentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		900000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2620;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					700000000000000000000001 = { CreatedOnToolsVersion = 26.2; };
+					700000000000000000000002 = { CreatedOnToolsVersion = 26.2; TestTargetID = 700000000000000000000001; };
+				};
+			};
+			buildConfigurationList = A00000000000000000000001;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = ( en, Base, "zh-Hans", );
+			mainGroup = 400000000000000000000001;
+			productRefGroup = 40000000000000000000000B;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				700000000000000000000001,
+				700000000000000000000002,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		800000000000000000000002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000011,
+				100000000000000000000012,
+				100000000000000000000013,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800000000000000000000004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ();
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		800000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				100000000000000000000001,
+				100000000000000000000002,
+				100000000000000000000003,
+				100000000000000000000004,
+				100000000000000000000005,
+				100000000000000000000006,
+				100000000000000000000007,
+				100000000000000000000008,
+				100000000000000000000009,
+				10000000000000000000000A,
+				10000000000000000000000B,
+				10000000000000000000000C,
+				10000000000000000000000D,
+				10000000000000000000000E,
+				10000000000000000000000F,
+				100000000000000000000010,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		800000000000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = ( 100000000000000000000018, );
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		600000000000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 700000000000000000000001 /* Moment */;
+			targetProxy = 600000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		500000000000000000000001 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				200000000000000000000013 /* en */,
+				20000000000000000000001A /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B00000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B00000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		B00000000000000000000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Moment;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSMinimumSystemVersion = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.personal-assistant.moment";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		B00000000000000000000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Moment;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_LSMinimumSystemVersion = 14.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.personal-assistant.moment";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		B00000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.personal-assistant.moment.tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moment.app/Contents/MacOS/Moment";
+			};
+			name = Debug;
+		};
+		B00000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.personal-assistant.moment.tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moment.app/Contents/MacOS/Moment";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A00000000000000000000001 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00000000000000000000001,
+				B00000000000000000000002,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000002 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00000000000000000000003,
+				B00000000000000000000004,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A00000000000000000000003 = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B00000000000000000000005,
+				B00000000000000000000006,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 900000000000000000000001 /* Project object */;
+}

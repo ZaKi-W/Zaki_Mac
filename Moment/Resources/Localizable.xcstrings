@@ -1,0 +1,402 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "app.name" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Moment" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "片刻" } }
+      }
+    },
+    "browser.address" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Search or enter website name" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "搜索或输入网站名称" } }
+      }
+    },
+    "browser.back" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Back" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "后退" } }
+      }
+    },
+    "browser.bookmark" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Bookmark" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加书签" } }
+      }
+    },
+    "browser.bookmarks" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bookmarks" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "书签" } }
+      }
+    },
+    "browser.dark" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Website Dark Mode" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "网页暗色适配" } }
+      }
+    },
+    "browser.favorites" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Favorites" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "常用网站" } }
+      }
+    },
+    "browser.forward" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Forward" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "前进" } }
+      }
+    },
+    "browser.home" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Page" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "起始页" } }
+      }
+    },
+    "browser.newTab" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Tab" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建标签页" } }
+      }
+    },
+    "browser.reload" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reload" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重新载入" } }
+      }
+    },
+    "browser.start" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Page" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "起始页" } }
+      }
+    },
+    "browser.unbookmark" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remove Bookmark" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "移除书签" } }
+      }
+    },
+    "common.cancel" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Cancel" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "取消" } }
+      }
+    },
+    "common.create" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "创建" } }
+      }
+    },
+    "common.save" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Save" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保存" } }
+      }
+    },
+    "editor.content" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒内容" } }
+      }
+    },
+    "editor.content.placeholder" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Take a moment to stretch" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "例如：起身活动一下" } }
+      }
+    },
+    "editor.edit" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit Reminder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑提醒" } }
+      }
+    },
+    "editor.enabled" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable immediately" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "立即启用" } }
+      }
+    },
+    "editor.hours" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Hours" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "小时" } }
+      }
+    },
+    "editor.interval" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Interval" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "时间间隔" } }
+      }
+    },
+    "editor.minutes" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Minutes" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "分钟" } }
+      }
+    },
+    "editor.mode" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Mode" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒方式" } }
+      }
+    },
+    "editor.new" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Reminder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建提醒" } }
+      }
+    },
+    "editor.seconds" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Seconds" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "秒" } }
+      }
+    },
+    "reminders.active" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Active" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "运行中" } }
+      }
+    },
+    "reminders.completed" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已完成" } }
+      }
+    },
+    "reminders.delete" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除" } }
+      }
+    },
+    "reminders.delete.confirm" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete this reminder?" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除这条提醒？" } }
+      }
+    },
+    "reminders.edit" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑" } }
+      }
+    },
+    "reminders.empty.body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a quiet prompt for the moments that matter." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "为值得留意的片刻，创建一个安静的提示。" } }
+      }
+    },
+    "reminders.empty.title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "No reminders yet" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有提醒" } }
+      }
+    },
+    "reminders.every" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Every" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每" } }
+      }
+    },
+    "reminders.new" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Reminder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建提醒" } }
+      }
+    },
+    "reminders.next" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Next" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "下次" } }
+      }
+    },
+    "reminders.once" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Once" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "单次" } }
+      }
+    },
+    "reminders.pause" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Pause" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂停" } }
+      }
+    },
+    "reminders.paused" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Paused" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已暂停" } }
+      }
+    },
+    "reminders.repeat" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Repeat" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "循环" } }
+      }
+    },
+    "reminders.resume" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Resume" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "继续" } }
+      }
+    },
+    "reminders.title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminders" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } }
+      }
+    },
+    "settings.about" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "关于" } }
+      }
+    },
+    "settings.appearance" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Appearance" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "外观" } }
+      }
+    },
+    "settings.browserDark" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark website adaptation" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "网页暗色适配" } }
+      }
+    },
+    "settings.chinese" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "简体中文" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "简体中文" } }
+      }
+    },
+    "settings.dark" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "深色" } }
+      }
+    },
+    "settings.english" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "English" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "English" } }
+      }
+    },
+    "settings.general" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "General" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通用" } }
+      }
+    },
+    "settings.globalShortcut" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Show or hide Moment" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "显示或隐藏片刻" } }
+      }
+    },
+    "settings.language" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Language" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "语言" } }
+      }
+    },
+    "settings.light" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Light" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "浅色" } }
+      }
+    },
+    "settings.notification" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知" } }
+      }
+    },
+    "settings.notification.allowed" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Allowed" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已允许" } }
+      }
+    },
+    "settings.notification.denied" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not allowed" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未允许" } }
+      }
+    },
+    "settings.notification.unknown" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not requested" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "尚未请求" } }
+      }
+    },
+    "settings.openSystemSettings" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open System Settings" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开系统设置" } }
+      }
+    },
+    "settings.shortcutHint" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Click the recorder, then press a shortcut." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "点按录制框，然后按下新的快捷键。" } }
+      }
+    },
+    "settings.shortcuts" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shortcuts" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "快捷键" } }
+      }
+    },
+    "settings.system" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "System" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跟随系统" } }
+      }
+    },
+    "settings.version" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "版本" } }
+      }
+    },
+    "sidebar.browser" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Browser" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "浏览器" } }
+      }
+    },
+    "sidebar.reminders" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminders" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } }
+      }
+    },
+    "status.migrated" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your reminders and bookmarks were imported." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已导入旧版提醒、书签和设置。" } }
+      }
+    },
+    "status.permissionDenied" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications are disabled. Enable them in System Settings." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知未启用，请前往系统设置允许通知。" } }
+      }
+    },
+    "status.shortcutUnavailable" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "That shortcut is unavailable; ⌘⇧H is active instead." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "该快捷键不可用，已改用 ⌘⇧H。" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

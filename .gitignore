@@ -1,34 +1,34 @@
-# Dependencies
-node_modules/
-src/renderer/node_modules/
+# Xcode
+DerivedData/
+build/
+*.xcuserstate
+*.xcuserdata/
+xcuserdata/
+*.xccheckout
+*.xcscmblueprint
 
-# Build output
-dist/
-release/
-src/renderer/dist/
-*.tsbuildinfo
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
 
-# IDE
+# Archives and exports
+*.xcarchive
+*.dSYM
+*.dmg
+*.zip
+ExportOptions.plist
+
+# OS and editors
+.DS_Store
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# OS
-.DS_Store
-Thumbs.db
-
-# Logs
+# Logs and local environment
 *.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment
 .env
 .env.local
 .env.*.local
-
-# Electron
-out/
