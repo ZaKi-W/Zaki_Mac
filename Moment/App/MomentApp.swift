@@ -48,6 +48,12 @@ final class MomentAppDelegate: NSObject, NSApplicationDelegate {
             name: .momentCloseCommand,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNotificationSelection(_:)),
+            name: .momentNotificationSelection,
+            object: nil
+        )
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(
@@ -75,9 +81,16 @@ final class MomentAppDelegate: NSObject, NSApplicationDelegate {
     @objc private func handleCloseCommand() {
         AppModel.shared.handleCloseCommand()
     }
+
+    @objc private func handleNotificationSelection(_ notification: Notification) {
+        AppModel.shared.handleNotificationSelection(notification.userInfo ?? [:])
+    }
 }
 
 extension Notification.Name {
     static let momentShowMainWindow = Notification.Name("moment.show-main-window")
     static let momentCloseCommand = Notification.Name("moment.close-command")
+    static let momentNotificationSelection = Notification.Name(
+        "moment.notification-selection"
+    )
 }

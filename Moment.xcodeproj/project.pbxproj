@@ -32,6 +32,14 @@
 		100000000000000000000017 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000017 /* Carbon.framework */; };
 		100000000000000000000018 /* MomentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000018 /* MomentTests.swift */; };
 		100000000000000000000019 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 200000000000000000000019 /* XCTest.framework */; };
+		100000000000000000000020 /* AppModel+Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000020 /* AppModel+Life.swift */; };
+		100000000000000000000021 /* LifeModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000021 /* LifeModels.swift */; };
+		100000000000000000000022 /* LifeCardComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000022 /* LifeCardComponents.swift */; };
+		100000000000000000000023 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000023 /* DashboardView.swift */; };
+		100000000000000000000024 /* InventoryViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000024 /* InventoryViews.swift */; };
+		100000000000000000000025 /* AssetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000025 /* AssetViews.swift */; };
+		100000000000000000000026 /* ExpenseViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000026 /* ExpenseViews.swift */; };
+		100000000000000000000027 /* InventoryPriceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000027 /* InventoryPriceViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +81,14 @@
 		20000000000000000000001A /* zh-Hans InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		20000000000000000000001B /* Moment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20000000000000000000001C /* MomentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MomentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		200000000000000000000020 /* AppModel+Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppModel+Life.swift"; sourceTree = "<group>"; };
+		200000000000000000000021 /* LifeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeModels.swift; sourceTree = "<group>"; };
+		200000000000000000000022 /* LifeCardComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCardComponents.swift; sourceTree = "<group>"; };
+		200000000000000000000023 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		200000000000000000000024 /* InventoryViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryViews.swift; sourceTree = "<group>"; };
+		200000000000000000000025 /* AssetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViews.swift; sourceTree = "<group>"; };
+		200000000000000000000026 /* ExpenseViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViews.swift; sourceTree = "<group>"; };
+		200000000000000000000027 /* InventoryPriceViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryPriceViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,13 +144,17 @@
 				200000000000000000000002,
 				200000000000000000000003,
 				200000000000000000000004,
+				200000000000000000000020,
 			);
 			path = App;
 			sourceTree = "<group>";
 		};
 		400000000000000000000004 /* Models */ = {
 			isa = PBXGroup;
-			children = ( 200000000000000000000005, );
+			children = (
+				200000000000000000000005,
+				200000000000000000000021,
+			);
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -165,6 +185,12 @@
 				20000000000000000000000D,
 				20000000000000000000000E,
 				20000000000000000000000F,
+				200000000000000000000022,
+				200000000000000000000023,
+				200000000000000000000024,
+				200000000000000000000025,
+				200000000000000000000026,
+				200000000000000000000027,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -310,6 +336,14 @@
 				10000000000000000000000E,
 				10000000000000000000000F,
 				100000000000000000000010,
+				100000000000000000000020,
+				100000000000000000000021,
+				100000000000000000000022,
+				100000000000000000000023,
+				100000000000000000000024,
+				100000000000000000000025,
+				100000000000000000000026,
+				100000000000000000000027,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,22 +6,58 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView {
             List(selection: $model.workspace) {
-                Label(
-                    model.text("sidebar.reminders"),
-                    systemImage: "checklist"
-                )
-                .tag(Workspace.reminders)
+                Section(model.text("sidebar.life")) {
+                    Label(
+                        model.text("sidebar.dashboard"),
+                        systemImage: "square.grid.2x2"
+                    )
+                    .tag(Workspace.dashboard)
 
-                Label(
-                    model.text("sidebar.browser"),
-                    systemImage: "safari"
-                )
-                .tag(Workspace.browser)
+                    Label(
+                        model.text("sidebar.inventory"),
+                        systemImage: "shippingbox"
+                    )
+                    .tag(Workspace.inventory)
+
+                    Label(
+                        model.text("sidebar.assets"),
+                        systemImage: "banknote"
+                    )
+                    .tag(Workspace.assets)
+
+                    Label(
+                        model.text("sidebar.expenses"),
+                        systemImage: "creditcard"
+                    )
+                    .tag(Workspace.expenses)
+                }
+
+                Section(model.text("sidebar.tools")) {
+                    Label(
+                        model.text("sidebar.reminders"),
+                        systemImage: "checklist"
+                    )
+                    .tag(Workspace.reminders)
+
+                    Label(
+                        model.text("sidebar.browser"),
+                        systemImage: "safari"
+                    )
+                    .tag(Workspace.browser)
+                }
             }
             .navigationTitle(model.text("app.name"))
             .navigationSplitViewColumnWidth(min: 170, ideal: 210, max: 260)
         } detail: {
             switch model.workspace {
+            case .dashboard:
+                DashboardWorkspace(model: model)
+            case .inventory:
+                InventoryWorkspace(model: model)
+            case .assets:
+                AssetWorkspace(model: model)
+            case .expenses:
+                ExpenseWorkspace(model: model)
             case .reminders:
                 ReminderWorkspace(model: model)
             case .browser:
@@ -31,6 +67,9 @@ struct ContentView: View {
         .background(MainWindowBehavior().frame(width: 0, height: 0))
         .sheet(item: $model.reminderDraft) { draft in
             ReminderEditorView(model: model, initialDraft: draft)
+        }
+        .sheet(isPresented: $model.showingInventoryReview) {
+            InventoryReviewView(model: model)
         }
         .alert(
             model.text("reminders.delete.confirm"),

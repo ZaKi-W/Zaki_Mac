@@ -12,6 +12,8 @@ protocol ReminderScheduling: Sendable {
     func authorizationState() async -> NotificationAuthorizationState
     func synchronize(
         _ reminders: [ReminderRecord],
+        life: LifeData,
+        language: AppLanguage,
         onFire: @escaping @Sendable (String, Date) -> Void
     ) async
     func cancelAll() async
@@ -35,7 +37,25 @@ final class MomentNotificationDelegate:
         _ center: UNUserNotificationCenter,
         didReceive response: UNNotificationResponse
     ) async {
-        NotificationCenter.default.post(name: .momentShowMainWindow, object: nil)
+        NotificationCenter.default.post(
+            name: Notification.Name("moment.show-main-window"),
+            object: nil
+        )
+
+        let notificationInfo = response.notification.request.content.userInfo
+        guard let route = notificationInfo["route"] as? String else {
+            return
+        }
+
+        var selectionInfo: [String: String] = ["route": route]
+        if let expenseID = notificationInfo["expenseID"] as? String {
+            selectionInfo["expenseID"] = expenseID
+        }
+        NotificationCenter.default.post(
+            name: Notification.Name("moment.notification-selection"),
+            object: nil,
+            userInfo: selectionInfo
+        )
     }
 }
 
@@ -71,13 +91,15 @@ actor ReminderScheduler: ReminderScheduling {
 
     func synchronize(
         _ reminders: [ReminderRecord],
+        life: LifeData,
+        language: AppLanguage,
         onFire: @escaping @Sendable (String, Date) -> Void
     ) async {
         for task in monitorTasks.values {
             task.cancel()
         }
         monitorTasks.removeAll()
-        center.removeAllPendingNotificationRequests()
+        await removePendingMomentNotifications()
 
         let deliveredIDs = Set(
             await center.deliveredNotifications().map(\.request.identifier)
@@ -89,6 +111,9 @@ actor ReminderScheduler: ReminderScheduling {
                 onFire: onFire
             )
         }
+
+        await scheduleInventoryReview(from: life, language: language)
+        await scheduleRecurringExpenses(from: life, language: language)
     }
 
     func cancelAll() async {
@@ -96,7 +121,125 @@ actor ReminderScheduler: ReminderScheduling {
             task.cancel()
         }
         monitorTasks.removeAll()
-        center.removeAllPendingNotificationRequests()
+        await removePendingMomentNotifications()
+    }
+
+    private func removePendingMomentNotifications() async {
+        let identifiers = await center.pendingNotificationRequests()
+            .map(\.identifier)
+            .filter { $0.hasPrefix("moment.") }
+        guard !identifiers.isEmpty else { return }
+        center.removePendingNotificationRequests(withIdentifiers: identifiers)
+    }
+
+    private func scheduleInventoryReview(
+        from life: LifeData,
+        language: AppLanguage
+    ) async {
+        let settings = life.inventoryReviewSettings
+        guard
+            settings.isEnabled,
+            life.householdItems.contains(where: { !$0.isArchived })
+        else {
+            return
+        }
+
+        var dateComponents = DateComponents()
+        dateComponents.weekday = min(max(settings.weekday, 1), 7)
+        dateComponents.hour = min(max(settings.hour, 0), 23)
+        dateComponents.minute = min(max(settings.minute, 0), 59)
+
+        let content = baseNotificationContent(
+            body: L10n.text("notification.inventory.review", language)
+        )
+        content.userInfo = ["route": "inventory"]
+
+        do {
+            try await center.add(
+                UNNotificationRequest(
+                    identifier: "moment.inventory.review",
+                    content: content,
+                    trigger: UNCalendarNotificationTrigger(
+                        dateMatching: dateComponents,
+                        repeats: true
+                    )
+                )
+            )
+        } catch {
+            // A later synchronization will retry scheduling.
+        }
+    }
+
+    private func scheduleRecurringExpenses(
+        from life: LifeData,
+        language: AppLanguage
+    ) async {
+        let now = Date()
+        let calendar = Calendar.current
+        let delivered = await center.deliveredNotifications()
+
+        for expense in life.recurringExpenses
+        where expense.isEnabled && expense.reminderEnabled {
+            guard let dueDate = expense.nextDueDate(
+                onOrAfter: now,
+                calendar: calendar
+            ) else {
+                continue
+            }
+
+            let reminderDate = calendar.date(
+                byAdding: .day,
+                value: -max(0, expense.reminderLeadDays),
+                to: dueDate
+            ) ?? dueDate
+            let identifier = "moment.expense.\(expense.id)"
+            if let previous = delivered.first(where: {
+                $0.request.identifier == identifier
+            }) {
+                let previousDueAt = previous.request.content.userInfo["dueAt"]
+                    as? TimeInterval
+                if let previousDueAt,
+                   abs(previousDueAt - dueDate.timeIntervalSince1970) < 1,
+                   reminderDate <= now {
+                    continue
+                }
+                center.removeDeliveredNotifications(withIdentifiers: [identifier])
+            }
+            let triggerDate = reminderDate > now
+                ? reminderDate
+                : now.addingTimeInterval(1)
+            var dateComponents = calendar.dateComponents(
+                [.year, .month, .day, .hour, .minute, .second],
+                from: triggerDate
+            )
+            dateComponents.calendar = calendar
+            dateComponents.timeZone = calendar.timeZone
+
+            let content = baseNotificationContent(
+                body: L10n.text("notification.expense.due", language)
+            )
+            content.title = expense.name
+            content.userInfo = [
+                "route": "expense",
+                "expenseID": expense.id,
+                "dueAt": dueDate.timeIntervalSince1970
+            ]
+
+            do {
+                try await center.add(
+                    UNNotificationRequest(
+                        identifier: identifier,
+                        content: content,
+                        trigger: UNCalendarNotificationTrigger(
+                            dateMatching: dateComponents,
+                            repeats: false
+                        )
+                    )
+                )
+            } catch {
+                // A later synchronization will retry scheduling.
+            }
+        }
     }
 
     private func schedule(
@@ -219,13 +362,20 @@ actor ReminderScheduler: ReminderScheduling {
     }
 
     private func notificationContent(for reminder: ReminderRecord) -> UNMutableNotificationContent {
+        let content = baseNotificationContent(body: reminder.content)
+        content.userInfo = ["reminderID": reminder.id]
+        return content
+    }
+
+    private func baseNotificationContent(
+        body: String
+    ) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = Bundle.main.object(
             forInfoDictionaryKey: "CFBundleDisplayName"
         ) as? String ?? "Moment"
-        content.body = reminder.content
+        content.body = body
         content.sound = .default
-        content.userInfo = ["reminderID": reminder.id]
         return content
     }
 

@@ -10,6 +10,13 @@ struct SettingsView: View {
                 .tabItem {
                     Label(model.text("settings.general"), systemImage: "gear")
                 }
+            LifeSettings(model: model)
+                .tabItem {
+                    Label(
+                        model.text("settings.life"),
+                        systemImage: "house"
+                    )
+                }
             ShortcutSettings(model: model)
                 .tabItem {
                     Label(
@@ -22,7 +29,7 @@ struct SettingsView: View {
                     Label(model.text("settings.about"), systemImage: "info.circle")
                 }
         }
-        .frame(width: 500, height: 330)
+        .frame(width: 540, height: 370)
         .padding(20)
     }
 }
@@ -95,6 +102,99 @@ private struct GeneralSettings: View {
         case .unknown:
             model.text("settings.notification.unknown")
         }
+    }
+}
+
+private struct LifeSettings: View {
+    @ObservedObject var model: AppModel
+
+    var body: some View {
+        Form {
+            Section(model.text("settings.inventoryReview")) {
+                Toggle(
+                    model.text("settings.inventoryReview.enabled"),
+                    isOn: Binding(
+                        get: { model.life.inventoryReviewSettings.isEnabled },
+                        set: { enabled in
+                            updateSchedule(isEnabled: enabled)
+                            if enabled {
+                                Task {
+                                    await model.requestNotificationPermissionIfNeeded()
+                                }
+                            }
+                        }
+                    )
+                )
+
+                Picker(
+                    model.text("settings.inventoryReview.weekday"),
+                    selection: Binding(
+                        get: { model.life.inventoryReviewSettings.weekday },
+                        set: { updateSchedule(weekday: $0) }
+                    )
+                ) {
+                    ForEach(1...7, id: \.self) { weekday in
+                        Text(
+                            Calendar.current.weekdaySymbols[
+                                (weekday - 1)
+                                % Calendar.current.weekdaySymbols.count
+                            ]
+                        )
+                        .tag(weekday)
+                    }
+                }
+
+                DatePicker(
+                    model.text("settings.inventoryReview.time"),
+                    selection: Binding(
+                        get: {
+                            let settings = model.life.inventoryReviewSettings
+                            return Calendar.current.date(
+                                bySettingHour: settings.hour,
+                                minute: settings.minute,
+                                second: 0,
+                                of: .now
+                            ) ?? .now
+                        },
+                        set: { date in
+                            let components = Calendar.current.dateComponents(
+                                [.hour, .minute],
+                                from: date
+                            )
+                            updateSchedule(
+                                hour: components.hour,
+                                minute: components.minute
+                            )
+                        }
+                    ),
+                    displayedComponents: .hourAndMinute
+                )
+            }
+
+            Section(model.text("settings.backup")) {
+                LabeledContent(model.text("settings.backup.description")) {
+                    Button(model.text("settings.backup.export")) {
+                        model.exportBackup()
+                    }
+                }
+            }
+        }
+        .formStyle(.grouped)
+    }
+
+    private func updateSchedule(
+        weekday: Int? = nil,
+        hour: Int? = nil,
+        minute: Int? = nil,
+        isEnabled: Bool? = nil
+    ) {
+        let current = model.life.inventoryReviewSettings
+        model.updateInventoryReviewSchedule(
+            weekday: weekday ?? current.weekday,
+            hour: hour ?? current.hour,
+            minute: minute ?? current.minute,
+            isEnabled: isEnabled ?? current.isEnabled
+        )
     }
 }
 

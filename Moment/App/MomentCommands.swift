@@ -19,15 +19,35 @@ struct MomentCommands: Commands {
 
         CommandGroup(after: .sidebar) {
             Divider()
+            Button(model.text("sidebar.dashboard")) {
+                model.workspace = .dashboard
+            }
+            .keyboardShortcut("1", modifiers: .command)
+
+            Button(model.text("sidebar.inventory")) {
+                model.workspace = .inventory
+            }
+            .keyboardShortcut("2", modifiers: .command)
+
+            Button(model.text("sidebar.assets")) {
+                model.workspace = .assets
+            }
+            .keyboardShortcut("3", modifiers: .command)
+
+            Button(model.text("sidebar.expenses")) {
+                model.workspace = .expenses
+            }
+            .keyboardShortcut("4", modifiers: .command)
+
             Button(model.text("sidebar.reminders")) {
                 model.workspace = .reminders
             }
-            .keyboardShortcut("1", modifiers: .command)
+            .keyboardShortcut("5", modifiers: .command)
 
             Button(model.text("sidebar.browser")) {
                 model.workspace = .browser
             }
-            .keyboardShortcut("2", modifiers: .command)
+            .keyboardShortcut("6", modifiers: .command)
         }
 
         CommandMenu(model.text("sidebar.browser")) {

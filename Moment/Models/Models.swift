@@ -1,6 +1,10 @@
 import Foundation
 
 enum Workspace: String, CaseIterable, Identifiable, Sendable {
+    case dashboard
+    case inventory
+    case assets
+    case expenses
     case reminders
     case browser
 
@@ -193,8 +197,49 @@ struct PersistedAppData: Codable, Equatable, Sendable {
     var version: Int
     var reminders: [ReminderRecord]
     var bookmarks: [BookmarkRecord]
+    var life: LifeData
 
-    static let empty = PersistedAppData(version: 1, reminders: [], bookmarks: [])
+    static let currentVersion = 3
+
+    static let empty = PersistedAppData(
+        version: currentVersion,
+        reminders: [],
+        bookmarks: [],
+        life: .empty
+    )
+
+    init(
+        version: Int = PersistedAppData.currentVersion,
+        reminders: [ReminderRecord],
+        bookmarks: [BookmarkRecord],
+        life: LifeData = .empty
+    ) {
+        self.version = version
+        self.reminders = reminders
+        self.bookmarks = bookmarks
+        self.life = life
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case version
+        case reminders
+        case bookmarks
+        case life
+    }
+
+    init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        version = try container.decodeIfPresent(Int.self, forKey: .version) ?? 1
+        reminders = try container.decodeIfPresent(
+            [ReminderRecord].self,
+            forKey: .reminders
+        ) ?? []
+        bookmarks = try container.decodeIfPresent(
+            [BookmarkRecord].self,
+            forKey: .bookmarks
+        ) ?? []
+        life = try container.decodeIfPresent(LifeData.self, forKey: .life) ?? .empty
+    }
 }
 
 enum URLResolver {

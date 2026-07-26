@@ -2,17 +2,21 @@ import AppKit
 import Combine
 import Foundation
 import SwiftUI
+import UniformTypeIdentifiers
 
 @MainActor
 final class AppModel: ObservableObject {
     static let shared = AppModel()
 
-    @Published var workspace: Workspace = .reminders
+    @Published var workspace: Workspace = .dashboard
     @Published private(set) var reminders: [ReminderRecord] = []
     @Published private(set) var bookmarks: [BookmarkRecord] = []
+    @Published private(set) var life: LifeData = .empty
     @Published private(set) var preferences: AppPreferences
     @Published var reminderDraft: ReminderDraft?
     @Published var pendingDeletion: ReminderRecord?
+    @Published var showingInventoryReview = false
+    @Published var highlightedExpenseID: String?
     @Published var statusMessage: String?
     @Published private(set) var notificationState: NotificationAuthorizationState = .unknown
 
@@ -79,14 +83,16 @@ final class AppModel: ObservableObject {
                 }
                 reminders = data?.reminders ?? []
                 bookmarks = data?.bookmarks ?? []
+                life = data?.life ?? .empty
                 applyAppearance()
                 browser.setDarkMode(preferences.browserDarkMode)
                 registerGlobalShortcut(preferences.globalShortcut)
                 await refreshNotificationState()
-                await synchronizeReminders()
+                await synchronizeNotifications()
             } catch {
                 reminders = []
                 bookmarks = []
+                life = .empty
                 statusMessage = error.localizedDescription
             }
         }
@@ -127,7 +133,7 @@ final class AppModel: ObservableObject {
         }
         reminderDraft = nil
         persistData()
-        await synchronizeReminders()
+        await synchronizeNotifications()
     }
 
     func toggle(_ reminder: ReminderRecord) {
@@ -142,7 +148,7 @@ final class AppModel: ObservableObject {
                 _ = await scheduler.requestAuthorization()
                 await refreshNotificationState()
             }
-            await synchronizeReminders()
+            await synchronizeNotifications()
         }
     }
 
@@ -155,7 +161,7 @@ final class AppModel: ObservableObject {
         reminders.removeAll { $0.id == pendingDeletion.id }
         self.pendingDeletion = nil
         persistData()
-        Task { await synchronizeReminders() }
+        Task { await synchronizeNotifications() }
     }
 
     func addBookmarkForActivePage() {
@@ -269,7 +275,7 @@ final class AppModel: ObservableObject {
     }
 
     func resynchronizeAfterWake() {
-        Task { await synchronizeReminders() }
+        Task { await synchronizeNotifications() }
     }
 
     private func handleReminderFired(id: String, at date: Date) {
@@ -283,20 +289,25 @@ final class AppModel: ObservableObject {
         persistData()
     }
 
-    private func synchronizeReminders() async {
+    func synchronizeNotifications() async {
         let current = reminders
-        await scheduler.synchronize(current) { [weak self] id, date in
+        await scheduler.synchronize(
+            current,
+            life: life,
+            language: preferences.language
+        ) { [weak self] id, date in
             Task { @MainActor in
                 self?.handleReminderFired(id: id, at: date)
             }
         }
     }
 
-    private func persistData() {
+    func persistData() {
         let snapshot = PersistedAppData(
-            version: 1,
+            version: PersistedAppData.currentVersion,
             reminders: reminders,
-            bookmarks: bookmarks
+            bookmarks: bookmarks,
+            life: life
         )
         Task {
             do {
@@ -304,6 +315,66 @@ final class AppModel: ObservableObject {
             } catch {
                 statusMessage = error.localizedDescription
             }
+        }
+    }
+
+    func commitLife(_ updated: LifeData, reschedule: Bool = true) {
+        life = updated
+        persistData()
+        if reschedule {
+            Task { await synchronizeNotifications() }
+        }
+    }
+
+    func requestNotificationPermissionIfNeeded() async {
+        let allowed = await scheduler.requestAuthorization()
+        await refreshNotificationState()
+        if !allowed {
+            statusMessage = text("status.permissionDenied")
+        }
+        await synchronizeNotifications()
+    }
+
+    func handleNotificationSelection(_ userInfo: [AnyHashable: Any]) {
+        switch userInfo["route"] as? String {
+        case "inventory":
+            workspace = .inventory
+            showingInventoryReview = true
+        case "expense":
+            workspace = .expenses
+            highlightedExpenseID = userInfo["expenseID"] as? String
+        default:
+            break
+        }
+        showMainWindow()
+    }
+
+    func exportBackup() {
+        let panel = NSSavePanel()
+        panel.allowedContentTypes = [.json]
+        panel.canCreateDirectories = true
+        let dateStamp = ISO8601DateFormatter().string(from: .now).prefix(10)
+        panel.nameFieldStringValue = "Moment-Backup-\(dateStamp).json"
+
+        guard panel.runModal() == .OK, let destination = panel.url else {
+            return
+        }
+
+        let snapshot = PersistedAppData(
+            version: PersistedAppData.currentVersion,
+            reminders: reminders,
+            bookmarks: bookmarks,
+            life: life
+        )
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.dateEncodingStrategy = .iso8601
+
+        do {
+            try encoder.encode(snapshot).write(to: destination, options: .atomic)
+            statusMessage = text("status.backupExported")
+        } catch {
+            statusMessage = error.localizedDescription
         }
     }
 

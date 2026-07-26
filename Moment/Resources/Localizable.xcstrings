@@ -157,6 +157,237 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "秒" } }
       }
     },
+    "common.archive" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Archive" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "归档" } } } },
+    "common.close" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Close" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "关闭" } } } },
+    "common.daysBefore" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "days before" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "天前" } } } },
+    "common.edit" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑" } } } },
+    "common.notes" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "备注" } } } },
+    "dashboard.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Life Overview" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生活总览" } } } },
+    "dashboard.overview" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today at a glance" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日概览" } } } },
+    "dashboard.charts" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Signals & Forecasts" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "状态与预测" } } } },
+    "dashboard.actions" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Needs Attention" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "需要关注" } } } },
+    "dashboard.inventory" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Inventory Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "库存盘点" } } } },
+    "dashboard.inventory.expiring" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Expiring within 30 days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "30 天内临期" } } } },
+    "dashboard.review.again" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Review Again" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "再次盘点" } } } },
+    "dashboard.review.completed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "This week is complete" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周盘点已完成" } } } },
+    "dashboard.review.completed.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Counted items are up to date." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已盘点物品的数据已更新。" } } } },
+    "dashboard.review.disabled" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekly review is off" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每周盘点提醒已关闭" } } } },
+    "dashboard.review.disabled.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Turn it on in Settings to keep inventory current." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "可在设置中开启固定盘点提醒。" } } } },
+    "dashboard.review.due" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Inventory review is due" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周库存待盘点" } } } },
+    "dashboard.review.due.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Check remaining quantities; skipped items keep their previous values." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "核对剩余数量，跳过的物品会保留原值。" } } } },
+    "dashboard.review.scheduled" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Next review is scheduled" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "盘点已安排" } } } },
+    "dashboard.review.scheduled.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Moment will remind you at the weekly review time." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "将在设定的每周盘点时间提醒你。" } } } },
+    "dashboard.review.start" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开始盘点" } } } },
+    "dashboard.notifications.off" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications are off" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知未开启" } } } },
+    "dashboard.notifications.off.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications to receive review and payment reminders." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开启后才能收到盘点和扣费提醒。" } } } },
+    "dashboard.financial" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Financial Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产" } } } },
+    "dashboard.financial.current" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Current Financial Value" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产现值" } } } },
+    "dashboard.financial.unrealized" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unrealized P/L" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未实现盈亏" } } } },
+    "dashboard.financial.stale" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Prices to update" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待更新价格" } } } },
+    "dashboard.durable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Durable Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "耐用品资产" } } } },
+    "dashboard.durable.daily" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Combined daily cost" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "综合日均成本" } } } },
+    "dashboard.durable.warranty" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Warranties expiring" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "即将到期保修" } } } },
+    "dashboard.expenses" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring Costs" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "常驻消费" } } } },
+    "dashboard.expenses.monthly" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Monthly Recurring Cost" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "月均固定支出" } } } },
+    "dashboard.expenses.annual" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Annual estimate" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "预计年均" } } } },
+    "dashboard.expenses.next30" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Due in 30 days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未来 30 天应付" } } } },
+    "dashboard.gauge.review" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Review Progress" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周盘点进度" } } } },
+    "dashboard.gauge.inventoryHealth" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Inventory Health" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "库存健康度" } } } },
+    "dashboard.gauge.priceFreshness" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Price Freshness" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "价格新鲜度" } } } },
+    "dashboard.chart.allocation" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Financial Allocation" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产配置" } } } },
+    "dashboard.chart.allocation.empty" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No valued positions yet" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无可计算的持仓估值" } } } },
+    "dashboard.chart.assetType" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Asset Type" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "资产类型" } } } },
+    "dashboard.chart.expenseForecast" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "30-Day Payment Forecast" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未来 30 天支出" } } } },
+    "dashboard.chart.expenseForecast.empty" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No payments due in the next 30 days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未来 30 天暂无应付" } } } },
+    "dashboard.chart.period" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Period" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "时段" } } } },
+    "dashboard.chart.amount" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Amount" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金额" } } } },
+    "dashboard.accessibility.open" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Open details" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "打开详情" } } } },
+    "inventory.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Household Inventory" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "家庭库存" } } } },
+    "inventory.add" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Item" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加物品" } } } },
+    "inventory.items" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Household Items" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "家庭物品" } } } },
+    "inventory.search" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Search items" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "搜索物品" } } } },
+    "inventory.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No household items" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有家庭物品" } } } },
+    "inventory.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add daily supplies and start tracking their remaining quantities." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加生活物资，开始记录它们的剩余数量。" } } } },
+    "inventory.noResults.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No matching items" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "没有匹配的物品" } } } },
+    "inventory.noResults.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Try clearing the current search or filters." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "尝试清除当前搜索或筛选条件。" } } } },
+    "inventory.filters" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Filters" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "筛选" } } } },
+    "inventory.filters.clear" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Filters" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "清除筛选" } } } },
+    "inventory.filter.all" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "全部" } } } },
+    "inventory.filter.status" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Status" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "状态" } } } },
+    "inventory.filter.location" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Location" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "位置" } } } },
+    "inventory.filter.low" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Low stock" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "低库存" } } } },
+    "inventory.filter.expiring" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Expiring soon" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "即将到期" } } } },
+    "inventory.filter.unreviewed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Not reviewed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周未盘点" } } } },
+    "inventory.status.low" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Low stock" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "低库存" } } } },
+    "inventory.status.ok" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "In stock" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "库存正常" } } } },
+    "inventory.status.expiring" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Expiring" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "临期" } } } },
+    "inventory.status.unreviewed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Not reviewed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周未盘点" } } } },
+    "inventory.status.notRecorded" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Not recorded" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "尚未录入" } } } },
+    "inventory.lastCount" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Last updated" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最后更新" } } } },
+    "inventory.expiration" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Expiration" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "到期日期" } } } },
+    "inventory.expiration.enable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Track an expiration date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "记录到期日期" } } } },
+    "inventory.quantityPrice.update" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Update Quantity & Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更新数量与价格" } } } },
+    "inventory.editor.details" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Item Details" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "物品信息" } } } },
+    "inventory.field.name" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "名称" } } } },
+    "inventory.field.location" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Storage Location" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "存放位置" } } } },
+    "inventory.field.unit" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unit" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "单位" } } } },
+    "inventory.field.lowThreshold" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Low-stock threshold" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "低库存阈值" } } } },
+    "inventory.field.initialQuantity" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Initial quantity" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "初始数量" } } } },
+    "inventory.field.quantity" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Quantity" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "数量" } } } },
+    "inventory.field.expiration" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Nearest expiration date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最近到期日" } } } },
+    "inventory.unit.default" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "item" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "件" } } } },
+    "inventory.price.initialUnitPrice" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Initial unit price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "初始单位价格" } } } },
+    "inventory.price.history" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Price History" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "价格历史" } } } },
+    "inventory.price.records" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Price Records" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "价格记录" } } } },
+    "inventory.price.latest" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Latest Unit Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最新单价" } } } },
+    "inventory.price.lowest" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Historical Low" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "历史低价" } } } },
+    "inventory.price.lowest.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Lowest recorded unit price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "历史记录中的最低单价" } } } },
+    "inventory.price.average" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Historical Average" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "历史均价" } } } },
+    "inventory.price.average.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Average of all recorded unit prices" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "全部价格记录的算术均价" } } } },
+    "inventory.price.trend" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Price Trend" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "价格趋势" } } } },
+    "inventory.price.unitPrice" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unit Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "单位价格" } } } },
+    "inventory.price.purchaseDate" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Update Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更新时间" } } } },
+    "inventory.price.previous" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous unit price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上次单位价格" } } } },
+    "inventory.price.required" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter a unit price to count this item." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "请输入单位价格后再盘点此物品。" } } } },
+    "inventory.price.correct" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Correct Latest Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更正最后一次价格" } } } },
+    "inventory.price.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No price history" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无价格记录" } } } },
+    "inventory.price.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Update quantity and price together to see historical lows and price trends." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "同时更新数量与价格，即可查看历史低价和价格走势。" } } } },
+    "inventory.price.empty.compact" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Update quantity and price to start comparing." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更新数量与价格后即可开始比较。" } } } },
+    "inventory.price.comparison.insufficient" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "More history needed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无历史比较" } } } },
+    "inventory.price.comparison.lowest" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "New historical low" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本次为历史低价" } } } },
+    "inventory.price.comparison.cheaper" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "below previous average" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "低于此前均价" } } } },
+    "inventory.price.comparison.equal" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Same as previous average" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "与此前均价持平" } } } },
+    "inventory.price.comparison.expensive" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "above previous average" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "高于此前均价" } } } },
+    "inventory.review.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekly Inventory Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每周库存盘点" } } } },
+    "inventory.review.start" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开始盘点" } } } },
+    "inventory.review.again" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Review Again" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "再次盘点" } } } },
+    "inventory.review.complete" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Complete Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "完成盘点" } } } },
+    "inventory.review.completed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Review complete" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周盘点完成" } } } },
+    "inventory.review.completed.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "This week's counted items are up to date." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周已盘点物品的数据已更新。" } } } },
+    "inventory.review.due" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Review household supplies" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "盘点家中物资" } } } },
+    "inventory.review.due.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Update confirmed quantities and prices; skip anything you did not count." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更新已确认的数量与价格，未盘点的物品可以跳过。" } } } },
+    "inventory.review.skipHint" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Skipped items keep their previous quantity and price." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跳过的物品会保留之前的数量与价格。" } } } },
+    "inventory.review.skip" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Skip this item" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "跳过此物品" } } } },
+    "inventory.review.previous" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上次数量" } } } },
+    "inventory.review.notEntered" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Not counted this week" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周未录入" } } } },
+    "inventory.review.schedule" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekly Review Schedule" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每周盘点安排" } } } },
+    "inventory.review.reminder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Remind me every week" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每周提醒我盘点" } } } },
+    "inventory.review.weekday" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekday" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "星期" } } } },
+    "inventory.review.time" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Time" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "时间" } } } },
+    "assets.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Personal Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "个人资产" } } } },
+    "assets.section" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Asset View" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "资产视图" } } } },
+    "assets.summary" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Asset Overview" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "资产概览" } } } },
+    "assets.durable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Durable Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "耐用品" } } } },
+    "assets.financial" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Financial Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产" } } } },
+    "assets.add" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Asset" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加资产" } } } },
+    "assets.durable.add" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Durable Asset" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加耐用品" } } } },
+    "assets.durable.items" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Durable Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "耐用品资产" } } } },
+    "assets.durable.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No durable assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有耐用品资产" } } } },
+    "assets.durable.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Track purchases such as computers, cameras, furniture, and appliances." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "记录电脑、相机、家具和家电等耐用品。" } } } },
+    "assets.durable.total" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Purchase Total" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "累计投入" } } } },
+    "assets.durable.total.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Total amount invested in active durable assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前耐用品的买入价合计" } } } },
+    "assets.durable.dailyCost" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Daily Cost" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日均成本" } } } },
+    "assets.durable.dailyCost.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Combined purchase cost per day held" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "按持有天数折算的综合日均成本" } } } },
+    "assets.durable.warranty" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Warranty" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保修" } } } },
+    "assets.durable.warranty.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Warranties expiring within 30 days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "30 天内即将到期的保修" } } } },
+    "assets.financial.add" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Financial Asset" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加金融资产" } } } },
+    "assets.financial.items" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Financial Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产" } } } },
+    "assets.financial.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No financial assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有金融资产" } } } },
+    "assets.financial.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add an asset, then record trades and a manual price." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "先添加资产，再记录交易和手工价格。" } } } },
+    "assets.financial.currentValue" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Current Value" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前价值" } } } },
+    "assets.financial.currentValue.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Based on the latest manually entered prices" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "基于最近一次手工录入价格" } } } },
+    "assets.financial.unrealized" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unrealized P/L" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未实现盈亏" } } } },
+    "assets.financial.unrealized.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Current value minus remaining cost basis" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前价值减去剩余持仓成本" } } } },
+    "assets.financial.stale" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Prices to Update" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待更新价格" } } } },
+    "assets.financial.stale.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Prices not updated in the last 7 days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "超过 7 天未更新的价格" } } } },
+    "assets.editor.details" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Asset Details" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "资产信息" } } } },
+    "assets.field.name" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "名称" } } } },
+    "assets.field.code" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Code" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "代码" } } } },
+    "assets.field.type" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Type" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "类型" } } } },
+    "assets.purchaseDate" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Purchase Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "购买日期" } } } },
+    "assets.purchasePrice" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Purchase Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "买入价" } } } },
+    "assets.estimatedValue" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Estimated Value" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前估值" } } } },
+    "assets.valuation" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Track a current estimate" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "记录当前估值" } } } },
+    "assets.valuationUpdated" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Valuation updated" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "估值更新时间" } } } },
+    "assets.warranty" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Warranty" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保修" } } } },
+    "assets.warranty.enable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Track warranty" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "记录保修期限" } } } },
+    "assets.warranty.end" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Warranty End Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保修截止日" } } } },
+    "assets.warranty.until" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Covered until" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保修至" } } } },
+    "assets.warranty.expired" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Warranty expired" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "保修已到期" } } } },
+    "assets.averageCost" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Average Cost" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "持仓均价" } } } },
+    "assets.latestPrice" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Latest Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最新价格" } } } },
+    "assets.price.update" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Update Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "更新价格" } } } },
+    "assets.price.date" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Price Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "价格日期" } } } },
+    "assets.price.stale" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Price is stale" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "价格待更新" } } } },
+    "assets.transaction.add" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Transaction" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加交易" } } } },
+    "assets.transaction.kind" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Transaction" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "交易类型" } } } },
+    "assets.transaction.date" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Trade Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "交易日期" } } } },
+    "assets.transaction.buy" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Buy" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "买入" } } } },
+    "assets.transaction.sell" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Sell" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "卖出" } } } },
+    "assets.transaction.oversold" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "The sale exceeds the available holding." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "卖出数量超过当前持仓。" } } } },
+    "assets.transaction.invalid" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter a valid quantity, price, and fee." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "请输入有效的数量、价格和手续费。" } } } },
+    "assets.quantity" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Quantity" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "数量" } } } },
+    "assets.unitPrice" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unit Price" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "单位价格" } } } },
+    "assets.fee" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Fee" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "手续费" } } } },
+    "assets.realized" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Realized P/L" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已实现盈亏" } } } },
+    "assets.unrealized.short" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unrealized" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未实现盈亏" } } } },
+    "assets.type.stock" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Stock" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "股票" } } } },
+    "assets.type.fund" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Fund" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "基金" } } } },
+    "assets.type.deposit" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Deposit" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "存款" } } } },
+    "assets.type.cash" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Cash" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "现金" } } } },
+    "assets.type.cryptocurrency" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Cryptocurrency" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "加密资产" } } } },
+    "assets.type.other" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Other" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "其他" } } } },
+    "expenses.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring Costs" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "常驻消费" } } } },
+    "expenses.summary" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Spending Overview" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "支出概览" } } } },
+    "expenses.add" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add Recurring Cost" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加常驻消费" } } } },
+    "expenses.items" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring Costs" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "常驻消费项目" } } } },
+    "expenses.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No recurring costs" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有常驻消费" } } } },
+    "expenses.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Track loans, subscriptions, property fees, and other regular payments." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "记录车贷、订阅、物业费和其他周期支出。" } } } },
+    "expenses.monthly" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Monthly Equivalent" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "折算月均" } } } },
+    "expenses.monthly.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Normalized across all active recurring costs" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "全部启用项目按月折算" } } } },
+    "expenses.annual" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Annual Estimate" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "预计年均" } } } },
+    "expenses.annual.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Projected recurring cost for one year" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "预计一年的常驻支出" } } } },
+    "expenses.next30Days" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Next 30 Days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未来 30 天" } } } },
+    "expenses.next30Days.detail" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Payments scheduled within 30 days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "30 天内计划扣费金额" } } } },
+    "expenses.monthlyEquivalent" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Monthly equivalent" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "月均金额" } } } },
+    "expenses.nextDue" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Next due" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "下次扣费" } } } },
+    "expenses.remaining" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Remaining payments" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "剩余期数" } } } },
+    "expenses.ongoing" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Ongoing" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "长期持续" } } } },
+    "expenses.autoRenew" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Auto-renews" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "自动续费" } } } },
+    "expenses.reminder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminder" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } } } },
+    "expenses.pause" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Pause" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂停" } } } },
+    "expenses.status.active" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Active" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "启用中" } } } },
+    "expenses.status.paused" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Paused" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已暂停" } } } },
+    "expenses.status.upcoming" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Due soon" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "即将扣费" } } } },
+    "expenses.editor.details" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Cost Details" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "消费信息" } } } },
+    "expenses.editor.schedule" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Billing Schedule" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "扣费周期" } } } },
+    "expenses.editor.reminder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminder" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } } } },
+    "expenses.field.name" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Name" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "名称" } } } },
+    "expenses.field.amount" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Amount" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金额" } } } },
+    "expenses.field.cycle" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Cycle" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "周期单位" } } } },
+    "expenses.field.interval" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Every" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每隔" } } } },
+    "expenses.field.anchorDate" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "First or Anchor Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "首次或基准扣费日" } } } },
+    "expenses.field.endDate.enable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Has an end date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "设置结束日期" } } } },
+    "expenses.field.endDate" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "End Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "结束日期" } } } },
+    "expenses.field.enabled" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Active" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "启用此项目" } } } },
+    "expenses.reminder.enable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Remind me before payment" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "扣费前提醒我" } } } },
+    "expenses.reminder.leadDays" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Remind me" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提前天数" } } } },
+    "expenses.cycle.day" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Day" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "天" } } } },
+    "expenses.cycle.week" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Week" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "周" } } } },
+    "expenses.cycle.month" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Month" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "月" } } } },
+    "expenses.cycle.year" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Year" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "年" } } } },
+    "notification.expense.due" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring expense due soon" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "常驻消费即将扣费" } }
+      }
+    },
+    "notification.inventory.review" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Time for your weekly inventory review" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "该进行每周库存盘点了" } }
+      }
+    },
     "reminders.active" : {
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Active" } },
@@ -265,6 +496,24 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "外观" } }
       }
     },
+    "settings.backup" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Local Backup" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本地备份" } }
+      }
+    },
+    "settings.backup.description" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export all Moment data as JSON" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "将片刻的全部数据导出为 JSON" } }
+      }
+    },
+    "settings.backup.export" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export Backup…" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "导出备份…" } }
+      }
+    },
     "settings.browserDark" : {
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Dark website adaptation" } },
@@ -299,6 +548,36 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Show or hide Moment" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "显示或隐藏片刻" } }
+      }
+    },
+    "settings.inventoryReview" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekly Inventory Review" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每周库存盘点" } }
+      }
+    },
+    "settings.inventoryReview.enabled" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Remind me every week" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每周提醒我盘点" } }
+      }
+    },
+    "settings.inventoryReview.time" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Time" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "时间" } }
+      }
+    },
+    "settings.inventoryReview.weekday" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Weekday" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "星期" } }
+      }
+    },
+    "settings.life" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Life" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生活" } }
       }
     },
     "settings.language" : {
@@ -367,10 +646,40 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "版本" } }
       }
     },
+    "sidebar.assets" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Assets" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "个人资产" } }
+      }
+    },
     "sidebar.browser" : {
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Browser" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "浏览器" } }
+      }
+    },
+    "sidebar.dashboard" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Overview" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生活总览" } }
+      }
+    },
+    "sidebar.expenses" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring Costs" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "常驻消费" } }
+      }
+    },
+    "sidebar.inventory" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Inventory" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "家庭库存" } }
+      }
+    },
+    "sidebar.life" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Life" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生活" } }
       }
     },
     "sidebar.reminders" : {
@@ -379,10 +688,22 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } }
       }
     },
+    "sidebar.tools" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Tools" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "工具" } }
+      }
+    },
     "status.migrated" : {
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Your reminders and bookmarks were imported." } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已导入旧版提醒、书签和设置。" } }
+      }
+    },
+    "status.backupExported" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Backup exported." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "备份已导出。" } }
       }
     },
     "status.permissionDenied" : {
