@@ -7,6 +7,7 @@ enum Workspace: String, CaseIterable, Identifiable, Sendable {
     case expenses
     case todos
     case reminders
+    case aiHot
     case browser
 
     var id: Self { self }

@@ -23,6 +23,7 @@ final class AppModel: ObservableObject {
     @Published private(set) var notificationState: NotificationAuthorizationState = .unknown
 
     let browser = BrowserController()
+    let aiHot = AIHotController()
 
     private let dataStore: JSONAppDataStore
     private let migrator: LegacyMigrator

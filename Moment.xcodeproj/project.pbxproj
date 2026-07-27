@@ -41,6 +41,11 @@
 		100000000000000000000026 /* ExpenseViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000026 /* ExpenseViews.swift */; };
 		100000000000000000000027 /* InventoryPriceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000027 /* InventoryPriceViews.swift */; };
 		100000000000000000000028 /* TodoViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000028 /* TodoViews.swift */; };
+		100000000000000000000029 /* AIHotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000029 /* AIHotController.swift */; };
+		10000000000000000000002A /* AIHotModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002A /* AIHotModels.swift */; };
+		10000000000000000000002B /* AIHotClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002B /* AIHotClient.swift */; };
+		10000000000000000000002C /* AIHotViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002C /* AIHotViews.swift */; };
+		10000000000000000000002D /* AIHotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002D /* AIHotTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +96,11 @@
 		200000000000000000000026 /* ExpenseViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViews.swift; sourceTree = "<group>"; };
 		200000000000000000000027 /* InventoryPriceViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryPriceViews.swift; sourceTree = "<group>"; };
 		200000000000000000000028 /* TodoViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViews.swift; sourceTree = "<group>"; };
+		200000000000000000000029 /* AIHotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotController.swift; sourceTree = "<group>"; };
+		20000000000000000000002A /* AIHotModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotModels.swift; sourceTree = "<group>"; };
+		20000000000000000000002B /* AIHotClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotClient.swift; sourceTree = "<group>"; };
+		20000000000000000000002C /* AIHotViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotViews.swift; sourceTree = "<group>"; };
+		20000000000000000000002D /* AIHotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +157,7 @@
 				200000000000000000000003,
 				200000000000000000000004,
 				200000000000000000000020,
+				200000000000000000000029,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -156,6 +167,7 @@
 			children = (
 				200000000000000000000005,
 				200000000000000000000021,
+				20000000000000000000002A,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -167,6 +179,7 @@
 				200000000000000000000007,
 				200000000000000000000008,
 				200000000000000000000009,
+				20000000000000000000002B,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,6 +207,7 @@
 				200000000000000000000026,
 				200000000000000000000027,
 				200000000000000000000028,
+				20000000000000000000002C,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,7 +225,10 @@
 		};
 		400000000000000000000009 /* MomentTests */ = {
 			isa = PBXGroup;
-			children = ( 200000000000000000000018, );
+			children = (
+				200000000000000000000018,
+				20000000000000000000002D,
+			);
 			path = MomentTests;
 			sourceTree = "<group>";
 		};
@@ -348,13 +365,20 @@
 				100000000000000000000026,
 				100000000000000000000027,
 				100000000000000000000028,
+				100000000000000000000029,
+				10000000000000000000002A,
+				10000000000000000000002B,
+				10000000000000000000002C,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		800000000000000000000003 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
-			files = ( 100000000000000000000018, );
+			files = (
+				100000000000000000000018,
+				10000000000000000000002D,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */

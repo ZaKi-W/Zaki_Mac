@@ -7,6 +7,53 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "片刻" } }
       }
     },
+    "aihot.attribution.default" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "AI HOT" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI HOT" } } } },
+    "aihot.category.ai-models" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "AI Models" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 模型" } } } },
+    "aihot.category.ai-products" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "AI Products" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 产品" } } } },
+    "aihot.category.all" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "All Categories" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "全部分类" } } } },
+    "aihot.category.industry" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Industry" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "行业动态" } } } },
+    "aihot.category.paper" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Research" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "论文研究" } } } },
+    "aihot.category.tip" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Tips & Opinions" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "技巧与观点" } } } },
+    "aihot.channel.daily" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Daily" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日报" } } } },
+    "aihot.channel.hotTopics" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Trending" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "热点" } } } },
+    "aihot.channel.label" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Channel" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "频道" } } } },
+    "aihot.channel.selected" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Selected" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "精选" } } } },
+    "aihot.daily.archive" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Past Reports" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "往期日报" } } } },
+    "aihot.daily.archive.empty" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No archived reports" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无往期日报" } } } },
+    "aihot.daily.flashes" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "News Flashes" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "快讯" } } } },
+    "aihot.daily.generated" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Generated" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生成于" } } } },
+    "aihot.daily.lead" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Lead Story" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日重点" } } } },
+    "aihot.daily.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "AI Daily" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 日报" } } } },
+    "aihot.dismiss" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Dismiss" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "关闭" } } } },
+    "aihot.empty.daily.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "The latest AI daily report is not available yet." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最新 AI 日报尚未发布。" } } } },
+    "aihot.empty.daily.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No Daily Report" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无日报" } } } },
+    "aihot.empty.hotTopics.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "AI HOT has no multi-source topics to show right now." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI HOT 当前没有可展示的多信源热点。" } } } },
+    "aihot.empty.hotTopics.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No Trending Topics" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无热点" } } } },
+    "aihot.empty.selected.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Try another time range, category, or search." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "试试调整时间范围、分类或搜索词。" } } } },
+    "aihot.empty.selected.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No Selected News" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "暂无精选资讯" } } } },
+    "aihot.error.cached" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Showing the last successful results" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在显示上次成功获取的内容" } } } },
+    "aihot.error.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Couldn't Load AI HOT" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "无法载入 AI HOT" } } } },
+    "aihot.filters.category" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Category" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "分类" } } } },
+    "aihot.filters.window" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Time Range" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "时间范围" } } } },
+    "aihot.hot.sourceCount" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Independent sources" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "独立信源" } } } },
+    "aihot.hot.sources" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Sources" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "相关信源" } } } },
+    "aihot.hotTopics.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Trending Now" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当前热点" } } } },
+    "aihot.loadMore" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Load More" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "加载更多" } } } },
+    "aihot.loading" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading AI news…" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在加载 AI 资讯…" } } } },
+    "aihot.loadingMore" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading more…" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "正在加载更多…" } } } },
+    "aihot.open.aihot" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Open on AI HOT" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "在 AI HOT 中打开" } } } },
+    "aihot.original" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Original" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "原文" } } } },
+    "aihot.refresh" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Refresh" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "刷新" } } } },
+    "aihot.refresh.available" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Refresh available" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "可重试时间" } } } },
+    "aihot.refresh.wait" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Please wait before refreshing again" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "请稍后再刷新" } } } },
+    "aihot.retry" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Retry" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重试" } } } },
+    "aihot.score" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Score" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "评分" } } } },
+    "aihot.search.clear" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Clear Search" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "清除搜索" } } } },
+    "aihot.search.minimum" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enter at least 2 characters to search." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "至少输入 2 个字符后再搜索。" } } } },
+    "aihot.search.placeholder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Search AI news" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "搜索 AI 资讯" } } } },
+    "aihot.selected.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Selected AI News" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "精选动态" } } } },
+    "aihot.window.24h" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "24 Hours" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "24 小时" } } } },
+    "aihot.window.7d" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "7 Days" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "7 天" } } } },
     "browser.address" : {
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Search or enter website name" } },
@@ -676,6 +723,12 @@
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Inventory" } },
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "家庭库存" } }
+      }
+    },
+    "sidebar.aiHot" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "AI News" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI 资讯" } }
       }
     },
     "sidebar.life" : {

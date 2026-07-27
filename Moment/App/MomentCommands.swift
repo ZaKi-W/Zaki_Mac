@@ -53,6 +53,11 @@ struct MomentCommands: Commands {
             }
             .keyboardShortcut("5", modifiers: .command)
 
+            Button(model.text("sidebar.aiHot")) {
+                model.workspace = .aiHot
+            }
+            .keyboardShortcut("7", modifiers: .command)
+
             Button(model.text("sidebar.browser")) {
                 model.workspace = .browser
             }

@@ -46,6 +46,12 @@ struct ContentView: View {
                     .tag(Workspace.reminders)
 
                     Label(
+                        model.text("sidebar.aiHot"),
+                        systemImage: "newspaper"
+                    )
+                    .tag(Workspace.aiHot)
+
+                    Label(
                         model.text("sidebar.browser"),
                         systemImage: "safari"
                     )
@@ -68,6 +74,8 @@ struct ContentView: View {
                 TodoWorkspace(model: model)
             case .reminders:
                 ReminderWorkspace(model: model)
+            case .aiHot:
+                AIHotWorkspace(model: model, controller: model.aiHot)
             case .browser:
                 BrowserWorkspace(model: model, controller: model.browser)
             }
