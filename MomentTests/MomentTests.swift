@@ -129,6 +129,68 @@ final class MomentTests: XCTestCase {
         XCTAssertEqual(decoded.life, .empty)
     }
 
+    func testTodoRecordCompletesAndReopens() {
+        let completedAt = Date(timeIntervalSince1970: 2_000)
+        var todo = TodoRecord(title: "  Buy milk  ")
+
+        XCTAssertEqual(todo.title, "Buy milk")
+        XCTAssertFalse(todo.isCompleted)
+
+        todo.rename("  Buy oat milk  ")
+        XCTAssertEqual(todo.title, "Buy oat milk")
+
+        todo.setCompleted(true, at: completedAt)
+        XCTAssertTrue(todo.isCompleted)
+        XCTAssertEqual(todo.completedAt, completedAt)
+
+        todo.setCompleted(false, at: completedAt)
+        XCTAssertFalse(todo.isCompleted)
+        XCTAssertNil(todo.completedAt)
+    }
+
+    func testOlderDataLoadsWithEmptyTodosAndTodosRoundTrip() throws {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let oldData = Data(
+            """
+            {
+              "version": 3,
+              "reminders": [],
+              "bookmarks": [],
+              "life": {}
+            }
+            """.utf8
+        )
+
+        let restoredOldData = try decoder.decode(
+            PersistedAppData.self,
+            from: oldData
+        )
+        XCTAssertTrue(restoredOldData.todos.isEmpty)
+
+        let original = PersistedAppData(
+            reminders: [],
+            bookmarks: [],
+            todos: [
+                TodoRecord(
+                    id: "todo",
+                    title: "Ship release",
+                    createdAt: Date(timeIntervalSince1970: 3_000)
+                )
+            ]
+        )
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+
+        let restored = try decoder.decode(
+            PersistedAppData.self,
+            from: encoder.encode(original)
+        )
+
+        XCTAssertEqual(restored, original)
+        XCTAssertEqual(restored.version, 4)
+    }
+
     func testVersionTwoDataRoundTripsLifeData() throws {
         let timestamp = Date(timeIntervalSince1970: 1_000)
         let original = PersistedAppData(

@@ -5,6 +5,7 @@ enum Workspace: String, CaseIterable, Identifiable, Sendable {
     case inventory
     case assets
     case expenses
+    case todos
     case reminders
     case browser
 
@@ -165,6 +166,37 @@ struct ReminderDraft: Identifiable, Equatable, Sendable {
     }
 }
 
+struct TodoRecord: Codable, Identifiable, Equatable, Sendable {
+    var id: String
+    var title: String
+    var createdAt: Date
+    var completedAt: Date?
+
+    var isCompleted: Bool {
+        completedAt != nil
+    }
+
+    init(
+        id: String = UUID().uuidString,
+        title: String,
+        createdAt: Date = .now,
+        completedAt: Date? = nil
+    ) {
+        self.id = id
+        self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.createdAt = createdAt
+        self.completedAt = completedAt
+    }
+
+    mutating func rename(_ title: String) {
+        self.title = title.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    mutating func setCompleted(_ completed: Bool, at date: Date = .now) {
+        completedAt = completed ? date : nil
+    }
+}
+
 struct BookmarkRecord: Codable, Identifiable, Equatable, Sendable {
     var id: String
     var title: String
@@ -197,14 +229,16 @@ struct PersistedAppData: Codable, Equatable, Sendable {
     var version: Int
     var reminders: [ReminderRecord]
     var bookmarks: [BookmarkRecord]
+    var todos: [TodoRecord]
     var life: LifeData
 
-    static let currentVersion = 3
+    static let currentVersion = 4
 
     static let empty = PersistedAppData(
         version: currentVersion,
         reminders: [],
         bookmarks: [],
+        todos: [],
         life: .empty
     )
 
@@ -212,11 +246,13 @@ struct PersistedAppData: Codable, Equatable, Sendable {
         version: Int = PersistedAppData.currentVersion,
         reminders: [ReminderRecord],
         bookmarks: [BookmarkRecord],
+        todos: [TodoRecord] = [],
         life: LifeData = .empty
     ) {
         self.version = version
         self.reminders = reminders
         self.bookmarks = bookmarks
+        self.todos = todos
         self.life = life
     }
 
@@ -224,6 +260,7 @@ struct PersistedAppData: Codable, Equatable, Sendable {
         case version
         case reminders
         case bookmarks
+        case todos
         case life
     }
 
@@ -237,6 +274,10 @@ struct PersistedAppData: Codable, Equatable, Sendable {
         bookmarks = try container.decodeIfPresent(
             [BookmarkRecord].self,
             forKey: .bookmarks
+        ) ?? []
+        todos = try container.decodeIfPresent(
+            [TodoRecord].self,
+            forKey: .todos
         ) ?? []
         life = try container.decodeIfPresent(LifeData.self, forKey: .life) ?? .empty
     }

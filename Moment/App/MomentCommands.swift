@@ -5,6 +5,11 @@ struct MomentCommands: Commands {
 
     var body: some Commands {
         CommandGroup(after: .newItem) {
+            Button(model.text("todos.new")) {
+                model.openNewTodo()
+            }
+            .keyboardShortcut("n", modifiers: [.command, .shift])
+
             Button(model.text("reminders.new")) {
                 model.openNewReminder()
             }
@@ -38,6 +43,10 @@ struct MomentCommands: Commands {
                 model.workspace = .expenses
             }
             .keyboardShortcut("4", modifiers: .command)
+
+            Button(model.text("sidebar.todos")) {
+                model.workspace = .todos
+            }
 
             Button(model.text("sidebar.reminders")) {
                 model.workspace = .reminders

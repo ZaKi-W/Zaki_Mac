@@ -11,12 +11,14 @@ final class AppModel: ObservableObject {
     @Published var workspace: Workspace = .dashboard
     @Published private(set) var reminders: [ReminderRecord] = []
     @Published private(set) var bookmarks: [BookmarkRecord] = []
+    @Published private(set) var todos: [TodoRecord] = []
     @Published private(set) var life: LifeData = .empty
     @Published private(set) var preferences: AppPreferences
     @Published var reminderDraft: ReminderDraft?
     @Published var pendingDeletion: ReminderRecord?
     @Published var showingInventoryReview = false
     @Published var highlightedExpenseID: String?
+    @Published var todoEntryFocusRequest = 0
     @Published var statusMessage: String?
     @Published private(set) var notificationState: NotificationAuthorizationState = .unknown
 
@@ -83,6 +85,7 @@ final class AppModel: ObservableObject {
                 }
                 reminders = data?.reminders ?? []
                 bookmarks = data?.bookmarks ?? []
+                todos = data?.todos ?? []
                 life = data?.life ?? .empty
                 applyAppearance()
                 browser.setDarkMode(preferences.browserDarkMode)
@@ -92,6 +95,7 @@ final class AppModel: ObservableObject {
             } catch {
                 reminders = []
                 bookmarks = []
+                todos = []
                 life = .empty
                 statusMessage = error.localizedDescription
             }
@@ -162,6 +166,49 @@ final class AppModel: ObservableObject {
         self.pendingDeletion = nil
         persistData()
         Task { await synchronizeNotifications() }
+    }
+
+    func openNewTodo() {
+        workspace = .todos
+        todoEntryFocusRequest += 1
+    }
+
+    @discardableResult
+    func addTodo(title: String) -> Bool {
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedTitle.isEmpty else { return false }
+        todos.append(TodoRecord(title: trimmedTitle))
+        persistData()
+        return true
+    }
+
+    func toggle(_ todo: TodoRecord) {
+        guard let index = todos.firstIndex(where: { $0.id == todo.id }) else {
+            return
+        }
+        todos[index].setCompleted(!todos[index].isCompleted)
+        persistData()
+    }
+
+    func updateTodoTitle(_ todo: TodoRecord, title: String) {
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedTitle.isEmpty else {
+            delete(todo)
+            return
+        }
+        guard
+            let index = todos.firstIndex(where: { $0.id == todo.id }),
+            todos[index].title != trimmedTitle
+        else {
+            return
+        }
+        todos[index].rename(trimmedTitle)
+        persistData()
+    }
+
+    func delete(_ todo: TodoRecord) {
+        todos.removeAll { $0.id == todo.id }
+        persistData()
     }
 
     func addBookmarkForActivePage() {
@@ -307,6 +354,7 @@ final class AppModel: ObservableObject {
             version: PersistedAppData.currentVersion,
             reminders: reminders,
             bookmarks: bookmarks,
+            todos: todos,
             life: life
         )
         Task {
@@ -364,6 +412,7 @@ final class AppModel: ObservableObject {
             version: PersistedAppData.currentVersion,
             reminders: reminders,
             bookmarks: bookmarks,
+            todos: todos,
             life: life
         )
         let encoder = JSONEncoder()

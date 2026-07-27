@@ -40,6 +40,7 @@
 		100000000000000000000025 /* AssetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000025 /* AssetViews.swift */; };
 		100000000000000000000026 /* ExpenseViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000026 /* ExpenseViews.swift */; };
 		100000000000000000000027 /* InventoryPriceViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000027 /* InventoryPriceViews.swift */; };
+		100000000000000000000028 /* TodoViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000028 /* TodoViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		200000000000000000000025 /* AssetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetViews.swift; sourceTree = "<group>"; };
 		200000000000000000000026 /* ExpenseViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViews.swift; sourceTree = "<group>"; };
 		200000000000000000000027 /* InventoryPriceViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryPriceViews.swift; sourceTree = "<group>"; };
+		200000000000000000000028 /* TodoViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 				200000000000000000000025,
 				200000000000000000000026,
 				200000000000000000000027,
+				200000000000000000000028,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				100000000000000000000025,
 				100000000000000000000026,
 				100000000000000000000027,
+				100000000000000000000028,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

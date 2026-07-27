@@ -20,6 +20,14 @@ struct DashboardWorkspace: View {
         expenseDueBuckets.contains { $0.amount > 0 }
     }
 
+    private var openTodos: [TodoRecord] {
+        model.todos.filter { !$0.isCompleted }
+    }
+
+    private var completedTodoCount: Int {
+        model.todos.filter(\.isCompleted).count
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
@@ -267,6 +275,16 @@ struct DashboardWorkspace: View {
 
     private var actionSummaries: some View {
         LifeCardGrid {
+            dashboardButton(workspace: .todos) {
+                LifeMetricCard(
+                    title: model.text("dashboard.todos"),
+                    value: "\(openTodos.count)",
+                    detail: todoDetail,
+                    systemImage: "checklist",
+                    tint: openTodos.isEmpty ? .green : .blue
+                )
+            }
+
             dashboardButton(workspace: .inventory) {
                 LifeMetricCard(
                     title: model.text("dashboard.inventory"),
@@ -340,6 +358,10 @@ struct DashboardWorkspace: View {
     private var durableDetail: String {
         let daily = LifeFormat.currency(metrics.durableDailyCost)
         return "\(model.text("dashboard.durable.daily")) \(daily) · \(metrics.expiringWarrantyCount) \(model.text("dashboard.durable.warranty"))"
+    }
+
+    private var todoDetail: String {
+        "\(completedTodoCount) \(model.text("dashboard.todos.completed"))"
     }
 
     private var allocationColors: [Color] {

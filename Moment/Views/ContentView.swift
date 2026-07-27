@@ -34,8 +34,14 @@ struct ContentView: View {
 
                 Section(model.text("sidebar.tools")) {
                     Label(
-                        model.text("sidebar.reminders"),
+                        model.text("sidebar.todos"),
                         systemImage: "checklist"
+                    )
+                    .tag(Workspace.todos)
+
+                    Label(
+                        model.text("sidebar.reminders"),
+                        systemImage: "bell.badge"
                     )
                     .tag(Workspace.reminders)
 
@@ -58,6 +64,8 @@ struct ContentView: View {
                 AssetWorkspace(model: model)
             case .expenses:
                 ExpenseWorkspace(model: model)
+            case .todos:
+                TodoWorkspace(model: model)
             case .reminders:
                 ReminderWorkspace(model: model)
             case .browser:
