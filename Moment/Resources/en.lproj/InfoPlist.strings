@@ -1,7 +1,7 @@
-"CFBundleDisplayName" = "Moment";
-"CFBundleName" = "Moment";
-"NSDesktopFolderUsageDescription" = "Moment uses your Desktop folder in the Files workspace.";
-"NSDocumentsFolderUsageDescription" = "Moment uses your Documents folder in the Files workspace.";
-"NSDownloadsFolderUsageDescription" = "Moment uses your Downloads folder in the Files workspace.";
-"NSNetworkVolumesUsageDescription" = "Moment accesses network volumes you choose to manage in Files.";
-"NSRemovableVolumesUsageDescription" = "Moment accesses removable volumes you choose to manage in Files.";
+"CFBundleDisplayName" = "Zaki";
+"CFBundleName" = "Zaki";
+"NSDesktopFolderUsageDescription" = "Zaki uses your Desktop folder in the Files workspace.";
+"NSDocumentsFolderUsageDescription" = "Zaki uses your Documents folder in the Files workspace.";
+"NSDownloadsFolderUsageDescription" = "Zaki uses your Downloads folder in the Files workspace.";
+"NSNetworkVolumesUsageDescription" = "Zaki accesses network volumes you choose to manage in Files.";
+"NSRemovableVolumesUsageDescription" = "Zaki accesses removable volumes you choose to manage in Files.";

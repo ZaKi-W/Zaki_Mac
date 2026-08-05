@@ -426,7 +426,7 @@ final class AppModel: ObservableObject {
         panel.allowedContentTypes = [.json]
         panel.canCreateDirectories = true
         let dateStamp = ISO8601DateFormatter().string(from: .now).prefix(10)
-        panel.nameFieldStringValue = "Moment-Backup-\(dateStamp).json"
+        panel.nameFieldStringValue = "Zaki-Backup-\(dateStamp).json"
 
         guard panel.runModal() == .OK, let destination = panel.url else {
             return

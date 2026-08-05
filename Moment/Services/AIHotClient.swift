@@ -90,7 +90,7 @@ actor AIHotClient: AIHotServing {
     init(
         baseURL: URL = AIHotClient.productionBaseURL,
         session: URLSession? = nil,
-        userAgent: String = "Moment/1.0 (macOS; AI HOT read-only client)",
+        userAgent: String = "Zaki/1.0 (macOS; AI HOT read-only client)",
         now: @escaping @Sendable () -> Date = { Date() }
     ) {
         self.baseURL = baseURL

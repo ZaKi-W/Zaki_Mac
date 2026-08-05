@@ -353,9 +353,9 @@ private enum RunningServiceStopError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .notAllowed:
-            "This service cannot be stopped from Moment."
+            "This service cannot be stopped from Zaki."
         case .permissionDenied:
-            "Moment does not have permission to stop this service."
+            "Zaki does not have permission to stop this service."
         case let .signalFailed(code):
             "The stop signal could not be sent (error \(code))."
         case .timedOut:

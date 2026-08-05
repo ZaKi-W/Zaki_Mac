@@ -1,4 +1,4 @@
-# 片刻 / Moment
+# Zaki
 
 一款使用 SwiftUI、AppKit 和 WebKit 构建的原生 macOS 提醒与轻量浏览应用。
 

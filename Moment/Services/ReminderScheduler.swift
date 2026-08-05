@@ -549,7 +549,7 @@ actor ReminderScheduler: ReminderScheduling {
         let content = UNMutableNotificationContent()
         content.title = Bundle.main.object(
             forInfoDictionaryKey: "CFBundleDisplayName"
-        ) as? String ?? "Moment"
+        ) as? String ?? "Zaki"
         content.body = body
         content.sound = .default
         return content

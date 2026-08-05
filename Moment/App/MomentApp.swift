@@ -7,7 +7,7 @@ struct MomentApp: App {
     @StateObject private var model = AppModel.shared
 
     var body: some Scene {
-        Window("Moment", id: "main") {
+        Window("Zaki", id: "main") {
             ContentView(model: model)
                 .environment(\.locale, model.locale)
                 .preferredColorScheme(model.preferredColorScheme)

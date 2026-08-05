@@ -3,8 +3,8 @@
   "strings" : {
     "app.name" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Moment" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "片刻" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Zaki" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Zaki" } }
       }
     },
     "aihot.attribution.default" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "AI HOT" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "AI HOT" } } } },
@@ -307,7 +307,7 @@
     "dashboard.review.due" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Inventory review is due" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周库存待盘点" } } } },
     "dashboard.review.due.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Check remaining quantities; skipped items keep their previous values." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "核对剩余数量，跳过的物品会保留原值。" } } } },
     "dashboard.review.scheduled" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Next review is scheduled" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "盘点已安排" } } } },
-    "dashboard.review.scheduled.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Moment will remind you at the weekly review time." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "将在设定的每周盘点时间提醒你。" } } } },
+    "dashboard.review.scheduled.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Zaki will remind you at the weekly review time." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Zaki 将在设定的每周盘点时间提醒你。" } } } },
     "dashboard.review.start" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开始盘点" } } } },
     "dashboard.notifications.off" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications are off" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知未开启" } } } },
     "dashboard.notifications.off.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications to receive review and payment reminders." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开启后才能收到盘点和扣费提醒。" } } } },
@@ -553,8 +553,8 @@
     },
     "reminders.empty.body" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a quiet prompt for the moments that matter." } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "为值得留意的片刻，创建一个安静的提示。" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Create a reminder for anything important." } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "为重要事项创建提醒。" } }
       }
     },
     "reminders.empty.title" : {
@@ -641,8 +641,8 @@
     },
     "settings.backup.description" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export all Moment data as JSON" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "将片刻的全部数据导出为 JSON" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Export all Zaki data as JSON" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "将 Zaki 的全部数据导出为 JSON" } }
       }
     },
     "settings.backup.export" : {
@@ -683,8 +683,8 @@
     },
     "settings.globalShortcut" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Show or hide Moment" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "显示或隐藏片刻" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Show or hide Zaki" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "显示或隐藏 Zaki" } }
       }
     },
     "settings.inventoryReview" : {

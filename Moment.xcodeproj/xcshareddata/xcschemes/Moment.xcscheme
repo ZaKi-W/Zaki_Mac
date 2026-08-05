@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "700000000000000000000001"
-               BuildableName = "Moment.app"
+               BuildableName = "Zaki.app"
                BlueprintName = "Moment"
                ReferencedContainer = "container:Moment.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "700000000000000000000001"
-            BuildableName = "Moment.app"
+            BuildableName = "Zaki.app"
             BlueprintName = "Moment"
             ReferencedContainer = "container:Moment.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "700000000000000000000001"
-            BuildableName = "Moment.app"
+            BuildableName = "Zaki.app"
             BlueprintName = "Moment"
             ReferencedContainer = "container:Moment.xcodeproj">
          </BuildableReference>
