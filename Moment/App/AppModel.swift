@@ -24,6 +24,7 @@ final class AppModel: ObservableObject {
 
     let browser = BrowserController()
     let aiHot = AIHotController()
+    let runningProjects = RunningProjectsController()
 
     private let dataStore: JSONAppDataStore
     private let migrator: LegacyMigrator

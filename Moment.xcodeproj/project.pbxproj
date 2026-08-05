@@ -46,6 +46,8 @@
 		10000000000000000000002B /* AIHotClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002B /* AIHotClient.swift */; };
 		10000000000000000000002C /* AIHotViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002C /* AIHotViews.swift */; };
 		10000000000000000000002D /* AIHotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002D /* AIHotTests.swift */; };
+		10000000000000000000002E /* RunningProjectsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002E /* RunningProjectsService.swift */; };
+		10000000000000000000002F /* RunningProjectsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002F /* RunningProjectsViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +103,8 @@
 		20000000000000000000002B /* AIHotClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotClient.swift; sourceTree = "<group>"; };
 		20000000000000000000002C /* AIHotViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotViews.swift; sourceTree = "<group>"; };
 		20000000000000000000002D /* AIHotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotTests.swift; sourceTree = "<group>"; };
+		20000000000000000000002E /* RunningProjectsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningProjectsService.swift; sourceTree = "<group>"; };
+		20000000000000000000002F /* RunningProjectsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningProjectsViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +184,7 @@
 				200000000000000000000008,
 				200000000000000000000009,
 				20000000000000000000002B,
+				20000000000000000000002E,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				200000000000000000000027,
 				200000000000000000000028,
 				20000000000000000000002C,
+				20000000000000000000002F,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -369,6 +375,8 @@
 				10000000000000000000002A,
 				10000000000000000000002B,
 				10000000000000000000002C,
+				10000000000000000000002E,
+				10000000000000000000002F,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
