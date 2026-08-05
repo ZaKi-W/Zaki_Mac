@@ -99,6 +99,7 @@ struct ReminderWorkspace: View {
 private struct ReminderRow: View {
     @ObservedObject var model: AppModel
     let reminder: ReminderRecord
+    @State private var previewing = false
 
     var body: some View {
         HStack(spacing: 12) {
@@ -148,6 +149,18 @@ private struct ReminderRow: View {
             }
 
             Spacer(minLength: 8)
+
+            Button(action: preview) {
+                if previewing {
+                    ProgressView()
+                        .controlSize(.small)
+                } else {
+                    Image(systemName: "bell.badge")
+                }
+            }
+            .buttonStyle(.plain)
+            .help(model.text("reminders.try.help"))
+            .disabled(previewing)
         }
         .contentShape(Rectangle())
         .padding(.vertical, 5)
@@ -169,6 +182,12 @@ private struct ReminderRow: View {
                 model.edit(reminder)
             } label: {
                 Label(model.text("reminders.edit"), systemImage: "pencil")
+            }
+            Button(action: preview) {
+                Label(
+                    model.text("reminders.try"),
+                    systemImage: "bell.badge"
+                )
             }
             Divider()
             Button(role: .destructive) {
@@ -192,6 +211,15 @@ private struct ReminderRow: View {
             ? "\(model.text("reminders.every")) \(value)"
             : "\(model.text("reminders.once")) · \(value)"
     }
+
+    private func preview() {
+        guard !previewing else { return }
+        previewing = true
+        Task {
+            _ = await model.previewReminder(content: reminder.content)
+            previewing = false
+        }
+    }
 }
 
 struct ReminderEditorView: View {
@@ -199,6 +227,8 @@ struct ReminderEditorView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var draft: ReminderDraft
     @State private var saving = false
+    @State private var previewing = false
+    @State private var previewFailed = false
 
     init(model: AppModel, initialDraft: ReminderDraft) {
         self.model = model
@@ -248,6 +278,34 @@ struct ReminderEditorView: View {
             Divider()
 
             HStack {
+                Button {
+                    previewing = true
+                    Task {
+                        let delivered = await model.previewReminder(
+                            content: draft.content
+                        )
+                        previewing = false
+                        previewFailed = !delivered
+                    }
+                } label: {
+                    if previewing {
+                        ProgressView()
+                            .controlSize(.small)
+                    } else {
+                        Label(
+                            model.text("reminders.try"),
+                            systemImage: "bell.badge"
+                        )
+                    }
+                }
+                .buttonStyle(.bordered)
+                .disabled(
+                    draft.content
+                        .trimmingCharacters(in: .whitespacesAndNewlines)
+                        .isEmpty || previewing
+                )
+                .help(model.text("reminders.try.help"))
+
                 Spacer()
                 Button(model.text("common.cancel")) {
                     dismiss()
@@ -277,6 +335,20 @@ struct ReminderEditorView: View {
                 ? model.text("editor.new")
                 : model.text("editor.edit")
         )
+        .alert(
+            model.text("reminders.try.failed"),
+            isPresented: $previewFailed
+        ) {
+            Button(model.text("common.close"), role: .cancel) {}
+        } message: {
+            Text(
+                model.text(
+                    model.notificationState == .denied
+                        ? "status.permissionDenied"
+                        : "reminders.try.failed.body"
+                )
+            )
+        }
     }
 }
 

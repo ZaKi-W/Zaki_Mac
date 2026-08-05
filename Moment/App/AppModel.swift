@@ -25,6 +25,7 @@ final class AppModel: ObservableObject {
     let browser = BrowserController()
     let aiHot = AIHotController()
     let runningProjects = RunningProjectsController()
+    let files = FileBrowserController()
 
     private let dataStore: JSONAppDataStore
     private let migrator: LegacyMigrator
@@ -277,6 +278,27 @@ final class AppModel: ObservableObject {
 
     func refreshNotificationState() async {
         notificationState = await scheduler.authorizationState()
+    }
+
+    @discardableResult
+    func previewReminder(content: String) async -> Bool {
+        let trimmedContent = content.trimmingCharacters(
+            in: .whitespacesAndNewlines
+        )
+        guard !trimmedContent.isEmpty else { return false }
+
+        let allowed = await scheduler.requestAuthorization()
+        await refreshNotificationState()
+        guard allowed else {
+            statusMessage = text("status.permissionDenied")
+            return false
+        }
+
+        let delivered = await scheduler.deliverPreview(body: trimmedContent)
+        if !delivered {
+            statusMessage = text("reminders.try.failed.body")
+        }
+        return delivered
     }
 
     func openNotificationSettings() {

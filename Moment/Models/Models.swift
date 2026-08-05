@@ -8,6 +8,7 @@ enum Workspace: String, CaseIterable, Identifiable, Sendable {
     case todos
     case reminders
     case runningProjects
+    case files
     case aiHot
     case browser
 

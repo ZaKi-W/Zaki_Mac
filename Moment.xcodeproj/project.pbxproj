@@ -48,6 +48,11 @@
 		10000000000000000000002D /* AIHotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002D /* AIHotTests.swift */; };
 		10000000000000000000002E /* RunningProjectsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002E /* RunningProjectsService.swift */; };
 		10000000000000000000002F /* RunningProjectsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20000000000000000000002F /* RunningProjectsViews.swift */; };
+		100000000000000000000030 /* FileBrowserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000030 /* FileBrowserController.swift */; };
+		100000000000000000000031 /* FileBrowserModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000031 /* FileBrowserModels.swift */; };
+		100000000000000000000032 /* LocalFileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000032 /* LocalFileService.swift */; };
+		100000000000000000000033 /* FileBrowserViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000033 /* FileBrowserViews.swift */; };
+		100000000000000000000034 /* FileBrowserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200000000000000000000034 /* FileBrowserTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +110,11 @@
 		20000000000000000000002D /* AIHotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIHotTests.swift; sourceTree = "<group>"; };
 		20000000000000000000002E /* RunningProjectsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningProjectsService.swift; sourceTree = "<group>"; };
 		20000000000000000000002F /* RunningProjectsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningProjectsViews.swift; sourceTree = "<group>"; };
+		200000000000000000000030 /* FileBrowserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserController.swift; sourceTree = "<group>"; };
+		200000000000000000000031 /* FileBrowserModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserModels.swift; sourceTree = "<group>"; };
+		200000000000000000000032 /* LocalFileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalFileService.swift; sourceTree = "<group>"; };
+		200000000000000000000033 /* FileBrowserViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserViews.swift; sourceTree = "<group>"; };
+		200000000000000000000034 /* FileBrowserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileBrowserTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +172,7 @@
 				200000000000000000000004,
 				200000000000000000000020,
 				200000000000000000000029,
+				200000000000000000000030,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -172,6 +183,7 @@
 				200000000000000000000005,
 				200000000000000000000021,
 				20000000000000000000002A,
+				200000000000000000000031,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +197,7 @@
 				200000000000000000000009,
 				20000000000000000000002B,
 				20000000000000000000002E,
+				200000000000000000000032,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -214,6 +227,7 @@
 				200000000000000000000028,
 				20000000000000000000002C,
 				20000000000000000000002F,
+				200000000000000000000033,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,6 +248,7 @@
 			children = (
 				200000000000000000000018,
 				20000000000000000000002D,
+				200000000000000000000034,
 			);
 			path = MomentTests;
 			sourceTree = "<group>";
@@ -377,6 +392,10 @@
 				10000000000000000000002C,
 				10000000000000000000002E,
 				10000000000000000000002F,
+				100000000000000000000030,
+				100000000000000000000031,
+				100000000000000000000032,
+				100000000000000000000033,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +405,7 @@
 			files = (
 				100000000000000000000018,
 				10000000000000000000002D,
+				100000000000000000000034,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +467,11 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Moment;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSMinimumSystemVersion = 14.0;
+				INFOPLIST_KEY_NSDesktopFolderUsageDescription = "Moment needs access to your Desktop folder in Files.";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Moment needs access to your Documents folder in Files.";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "Moment needs access to your Downloads folder in Files.";
+				INFOPLIST_KEY_NSNetworkVolumesUsageDescription = "Moment accesses network volumes you choose in Files.";
+				INFOPLIST_KEY_NSRemovableVolumesUsageDescription = "Moment accesses removable volumes you choose in Files.";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.personal-assistant.moment";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -467,6 +492,11 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Moment;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_LSMinimumSystemVersion = 14.0;
+				INFOPLIST_KEY_NSDesktopFolderUsageDescription = "Moment needs access to your Desktop folder in Files.";
+				INFOPLIST_KEY_NSDocumentsFolderUsageDescription = "Moment needs access to your Documents folder in Files.";
+				INFOPLIST_KEY_NSDownloadsFolderUsageDescription = "Moment needs access to your Downloads folder in Files.";
+				INFOPLIST_KEY_NSNetworkVolumesUsageDescription = "Moment accesses network volumes you choose in Files.";
+				INFOPLIST_KEY_NSRemovableVolumesUsageDescription = "Moment accesses removable volumes you choose in Files.";
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.personal-assistant.moment";
 				PRODUCT_NAME = "$(TARGET_NAME)";

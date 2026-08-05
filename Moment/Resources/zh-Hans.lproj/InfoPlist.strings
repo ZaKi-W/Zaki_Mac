@@ -1,2 +1,7 @@
 "CFBundleDisplayName" = "片刻";
 "CFBundleName" = "片刻";
+"NSDesktopFolderUsageDescription" = "Moment 需要在“文件”模块中访问你的桌面文件夹。";
+"NSDocumentsFolderUsageDescription" = "Moment 需要在“文件”模块中访问你的文稿文件夹。";
+"NSDownloadsFolderUsageDescription" = "Moment 需要在“文件”模块中访问你的下载文件夹。";
+"NSNetworkVolumesUsageDescription" = "Moment 需要访问你选择在“文件”模块中管理的网络磁盘。";
+"NSRemovableVolumesUsageDescription" = "Moment 需要访问你选择在“文件”模块中管理的外接磁盘。";

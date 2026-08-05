@@ -10,6 +10,7 @@ enum NotificationAuthorizationState: Equatable, Sendable {
 protocol ReminderScheduling: Sendable {
     func requestAuthorization() async -> Bool
     func authorizationState() async -> NotificationAuthorizationState
+    func deliverPreview(body: String) async -> Bool
     func synchronize(
         _ reminders: [ReminderRecord],
         life: LifeData,
@@ -89,6 +90,26 @@ actor ReminderScheduler: ReminderScheduling {
         }
     }
 
+    func deliverPreview(body: String) async -> Bool {
+        let trimmedBody = body.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmedBody.isEmpty else { return false }
+
+        do {
+            let content = baseNotificationContent(body: trimmedBody)
+            content.userInfo = ["preview": true]
+            try await center.add(
+                UNNotificationRequest(
+                    identifier: "moment.preview.\(UUID().uuidString)",
+                    content: content,
+                    trigger: nil
+                )
+            )
+            return true
+        } catch {
+            return false
+        }
+    }
+
     func synchronize(
         _ reminders: [ReminderRecord],
         life: LifeData,
@@ -99,7 +120,31 @@ actor ReminderScheduler: ReminderScheduling {
             task.cancel()
         }
         monitorTasks.removeAll()
-        await removePendingMomentNotifications()
+
+        let pendingRequests = await center.pendingNotificationRequests()
+        let activeReminderIDs = Set(
+            reminders
+                .filter(\.isEnabled)
+                .flatMap {
+                    [notificationID($0.id), nextNotificationID($0)]
+                }
+        )
+        let staleReminderIDs = pendingRequests
+            .map(\.identifier)
+            .filter {
+                $0.hasPrefix("moment.reminder.")
+                    && !activeReminderIDs.contains($0)
+            }
+        if !staleReminderIDs.isEmpty {
+            center.removePendingNotificationRequests(
+                withIdentifiers: staleReminderIDs
+            )
+        }
+        let pendingByIdentifier = Dictionary(
+            uniqueKeysWithValues: pendingRequests.map {
+                ($0.identifier, $0)
+            }
+        )
 
         let deliveredIDs = Set(
             await center.deliveredNotifications().map(\.request.identifier)
@@ -107,7 +152,12 @@ actor ReminderScheduler: ReminderScheduling {
         for reminder in reminders where reminder.isEnabled {
             await schedule(
                 reminder,
-                wasDelivered: deliveredIDs.contains(notificationID(reminder.id)),
+                existingRequest: pendingByIdentifier[notificationID(reminder.id)],
+                existingNextRequest: pendingByIdentifier[
+                    nextNotificationID(reminder)
+                ],
+                wasDelivered: deliveredIDs.contains(notificationID(reminder.id))
+                    || deliveredIDs.contains(nextNotificationID(reminder)),
                 onFire: onFire
             )
         }
@@ -244,29 +294,73 @@ actor ReminderScheduler: ReminderScheduling {
 
     private func schedule(
         _ reminder: ReminderRecord,
+        existingRequest: UNNotificationRequest?,
+        existingNextRequest: UNNotificationRequest?,
         wasDelivered: Bool,
         onFire: @escaping @Sendable (String, Date) -> Void
     ) async {
         let now = Date()
         let dueAt = reminder.nextTriggerAt
             ?? now.addingTimeInterval(TimeInterval(reminder.intervalSeconds))
-        let delay = max(0, dueAt.timeIntervalSince(now))
+        var delay = max(0, dueAt.timeIntervalSince(now))
+        let hasExistingRequest = existingRequest != nil
+        let hasExistingNextRequest = existingNextRequest != nil
+        let existingRequestMatches = request(
+            existingRequest,
+            matches: reminder
+        )
+        let existingNextRequestMatches = initialRequest(
+            existingNextRequest,
+            matches: reminder
+        )
 
-        if !reminder.repeats, delay == 0 {
+        let wasOverdue = delay == 0
+        if wasOverdue {
             if !wasDelivered {
                 await deliverNow(reminder)
             }
             onFire(reminder.id, now)
-            return
+            guard reminder.repeats else { return }
+            delay = TimeInterval(reminder.intervalSeconds)
         }
 
         if reminder.repeats && reminder.intervalSeconds < 60 {
+            if hasExistingRequest || hasExistingNextRequest {
+                center.removePendingNotificationRequests(
+                    withIdentifiers: [
+                        notificationID(reminder.id),
+                        nextNotificationID(reminder)
+                    ]
+                )
+            }
             monitorTasks[reminder.id] = subminuteTask(
                 reminder,
                 initialDelay: delay,
                 onFire: onFire
             )
             return
+        }
+
+        let requiresInitialAlignment = reminder.repeats
+            && !hasExistingRequest
+            && delay + 0.5 < TimeInterval(reminder.intervalSeconds)
+
+        if requiresInitialAlignment,
+           !existingNextRequestMatches {
+            do {
+                try await center.add(
+                    UNNotificationRequest(
+                        identifier: nextNotificationID(reminder),
+                        content: notificationContent(for: reminder),
+                        trigger: UNTimeIntervalNotificationTrigger(
+                            timeInterval: max(1, delay),
+                            repeats: false
+                        )
+                    )
+                )
+            } catch {
+                // The repeating backup remains available.
+            }
         }
 
         let content = notificationContent(for: reminder)
@@ -283,33 +377,85 @@ actor ReminderScheduler: ReminderScheduling {
             )
         }
 
-        do {
-            try await center.add(
-                UNNotificationRequest(
-                    identifier: notificationID(reminder.id),
-                    content: content,
-                    trigger: trigger
+        if wasOverdue || !existingRequestMatches {
+            do {
+                try await center.add(
+                    UNNotificationRequest(
+                        identifier: notificationID(reminder.id),
+                        content: content,
+                        trigger: trigger
+                    )
                 )
-            )
-        } catch {
-            // The in-process monitor still keeps state accurate.
+            } catch {
+                // The in-process monitor still keeps state accurate.
+            }
         }
 
         monitorTasks[reminder.id] = monitorTask(
             reminder,
             initialDelay: delay,
+            realignsSystemSchedule: requiresInitialAlignment
+                || hasExistingNextRequest,
             onFire: onFire
         )
+    }
+
+    private func request(
+        _ request: UNNotificationRequest?,
+        matches reminder: ReminderRecord
+    ) -> Bool {
+        guard
+            let request,
+            request.content.body == reminder.content,
+            let trigger = request.trigger as? UNTimeIntervalNotificationTrigger,
+            trigger.repeats == reminder.repeats
+        else {
+            return false
+        }
+
+        if reminder.repeats {
+            return abs(
+                trigger.timeInterval - TimeInterval(reminder.intervalSeconds)
+            ) < 0.5
+        }
+        guard
+            let scheduledDueAt = request.content.userInfo["dueAt"] as? TimeInterval,
+            let dueAt = reminder.nextTriggerAt?.timeIntervalSince1970
+        else {
+            return false
+        }
+        return abs(scheduledDueAt - dueAt) < 0.5
+    }
+
+    private func initialRequest(
+        _ request: UNNotificationRequest?,
+        matches reminder: ReminderRecord
+    ) -> Bool {
+        guard
+            let request,
+            request.content.body == reminder.content,
+            let trigger = request.trigger as? UNTimeIntervalNotificationTrigger,
+            !trigger.repeats,
+            let scheduledDueAt = request.content.userInfo["dueAt"] as? TimeInterval,
+            let dueAt = reminder.nextTriggerAt?.timeIntervalSince1970
+        else {
+            return false
+        }
+        return abs(scheduledDueAt - dueAt) < 0.5
     }
 
     private func monitorTask(
         _ reminder: ReminderRecord,
         initialDelay: TimeInterval,
+        realignsSystemSchedule: Bool = false,
         onFire: @escaping @Sendable (String, Date) -> Void
     ) -> Task<Void, Never> {
         Task {
             do {
                 try await sleep(seconds: initialDelay)
+                if realignsSystemSchedule, !Task.isCancelled {
+                    await realignRepeatingNotification(reminder)
+                }
                 while !Task.isCancelled {
                     onFire(reminder.id, .now)
                     guard reminder.repeats else { break }
@@ -318,6 +464,28 @@ actor ReminderScheduler: ReminderScheduling {
             } catch {
                 return
             }
+        }
+    }
+
+    private func realignRepeatingNotification(
+        _ reminder: ReminderRecord
+    ) async {
+        center.removePendingNotificationRequests(
+            withIdentifiers: [notificationID(reminder.id)]
+        )
+        do {
+            try await center.add(
+                UNNotificationRequest(
+                    identifier: notificationID(reminder.id),
+                    content: notificationContent(for: reminder),
+                    trigger: UNTimeIntervalNotificationTrigger(
+                        timeInterval: TimeInterval(reminder.intervalSeconds),
+                        repeats: true
+                    )
+                )
+            )
+        } catch {
+            // The in-process monitor continues to advance state.
         }
     }
 
@@ -363,7 +531,15 @@ actor ReminderScheduler: ReminderScheduling {
 
     private func notificationContent(for reminder: ReminderRecord) -> UNMutableNotificationContent {
         let content = baseNotificationContent(body: reminder.content)
-        content.userInfo = ["reminderID": reminder.id]
+        var userInfo: [String: Any] = [
+            "reminderID": reminder.id,
+            "intervalSeconds": reminder.intervalSeconds,
+            "repeats": reminder.repeats
+        ]
+        if let dueAt = reminder.nextTriggerAt {
+            userInfo["dueAt"] = dueAt.timeIntervalSince1970
+        }
+        content.userInfo = userInfo
         return content
     }
 
@@ -381,5 +557,14 @@ actor ReminderScheduler: ReminderScheduling {
 
     private func notificationID(_ reminderID: String) -> String {
         "moment.reminder.\(reminderID)"
+    }
+
+    private func nextNotificationID(_ reminder: ReminderRecord) -> String {
+        let dueTimestamp = Int64(
+            (reminder.nextTriggerAt ?? reminder.createdAt)
+                .timeIntervalSince1970
+                .rounded()
+        )
+        return "moment.reminder.\(reminder.id).next.\(dueTimestamp)"
     }
 }

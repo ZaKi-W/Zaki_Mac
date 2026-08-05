@@ -52,6 +52,12 @@ struct ContentView: View {
                     .tag(Workspace.runningProjects)
 
                     Label(
+                        model.text("sidebar.files"),
+                        systemImage: "folder"
+                    )
+                    .tag(Workspace.files)
+
+                    Label(
                         model.text("sidebar.aiHot"),
                         systemImage: "newspaper"
                     )
@@ -84,6 +90,11 @@ struct ContentView: View {
                 RunningProjectsWorkspace(
                     model: model,
                     controller: model.runningProjects
+                )
+            case .files:
+                FileBrowserWorkspace(
+                    model: model,
+                    controller: model.files
                 )
             case .aiHot:
                 AIHotWorkspace(model: model, controller: model.aiHot)
