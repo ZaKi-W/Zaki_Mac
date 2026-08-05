@@ -219,6 +219,8 @@ enum L10n {
         "inventory.status.expiring": "Expiring",
         "inventory.status.unreviewed": "Not reviewed",
         "inventory.status.notRecorded": "Not recorded",
+        "inventory.details.title": "Item Details",
+        "inventory.details.open": "Open Details",
         "inventory.lastCount": "Last updated",
         "inventory.expiration": "Expiration",
         "inventory.expiration.enable": "Track an expiration date",

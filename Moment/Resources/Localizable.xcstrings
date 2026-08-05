@@ -272,6 +272,8 @@
     "inventory.status.expiring" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Expiring" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "临期" } } } },
     "inventory.status.unreviewed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Not reviewed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本周未盘点" } } } },
     "inventory.status.notRecorded" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Not recorded" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "尚未录入" } } } },
+    "inventory.details.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Item Details" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "物品详情" } } } },
+    "inventory.details.open" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Details" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "查看详情" } } } },
     "inventory.lastCount" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Last updated" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "最后更新" } } } },
     "inventory.expiration" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Expiration" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "到期日期" } } } },
     "inventory.expiration.enable" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Track an expiration date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "记录到期日期" } } } },

@@ -1,14 +1,19 @@
 import Charts
 import SwiftUI
 
-struct InventoryPriceHistoryView: View {
+struct InventoryItemDetailView: View {
     @ObservedObject var model: AppModel
     @Environment(\.dismiss) private var dismiss
     let item: HouseholdItem
 
     @State private var selectedDate: Date?
     @State private var isShowingCountEditor = false
+    @State private var isShowingItemEditor = false
     @State private var correctionRecord: InventoryPriceRecord?
+
+    private var currentItem: HouseholdItem {
+        model.life.householdItems.first { $0.id == item.id } ?? item
+    }
 
     private var records: [InventoryPriceRecord] {
         model.life.inventoryPriceHistory(for: item.id)
@@ -33,16 +38,39 @@ struct InventoryPriceHistoryView: View {
     }
 
     private var unit: String {
-        item.unit.isEmpty ? model.text("inventory.unit.default") : item.unit
+        currentItem.unit.isEmpty
+            ? model.text("inventory.unit.default")
+            : currentItem.unit
+    }
+
+    private var currentQuantity: Decimal? {
+        model.life.currentQuantity(for: item.id)
+    }
+
+    private var latestCount: InventoryCount? {
+        model.life.latestInventoryCount(for: item.id)
+    }
+
+    private var isLowStock: Bool {
+        currentQuantity.map { $0 <= currentItem.lowStockThreshold } ?? false
+    }
+
+    private var isExpiring: Bool {
+        guard let expiration = currentItem.nearestExpirationDate else {
+            return false
+        }
+        return expiration >= Calendar.current.startOfDay(for: .now)
+            && expiration
+                <= Calendar.current.date(byAdding: .day, value: 30, to: .now)!
     }
 
     var body: some View {
         VStack(spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(item.name)
+                    Text(currentItem.name)
                         .font(.title2.weight(.semibold))
-                    Text(model.text("inventory.price.history"))
+                    Text(detailSubtitle)
                         .font(.callout)
                         .foregroundStyle(.secondary)
                 }
@@ -56,6 +84,28 @@ struct InventoryPriceHistoryView: View {
                     )
                 }
                 .buttonStyle(.borderedProminent)
+
+                Button {
+                    isShowingItemEditor = true
+                } label: {
+                    Label(model.text("common.edit"), systemImage: "pencil")
+                }
+                .buttonStyle(.bordered)
+
+                Menu {
+                    Button(
+                        model.text("common.archive"),
+                        role: .destructive
+                    ) {
+                        model.archiveHouseholdItem(currentItem)
+                        dismiss()
+                    }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                }
+                .menuStyle(.borderlessButton)
+                .fixedSize()
+
                 Button {
                     dismiss()
                 } label: {
@@ -69,8 +119,17 @@ struct InventoryPriceHistoryView: View {
             Divider()
 
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
+                VStack(alignment: .leading, spacing: 20) {
+                    inventoryOverview
+
                     if let summary {
+                        LifeSectionHeader(
+                            title: model.text("inventory.price.history"),
+                            detail: "\(records.count)",
+                            systemImage: "chart.xyaxis.line",
+                            showsDivider: true
+                        )
+
                         LifeCardGrid {
                             LifeMetricCard(
                                 title: model.text("inventory.price.latest"),
@@ -98,8 +157,11 @@ struct InventoryPriceHistoryView: View {
                         LifeCard {
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
-                                    Text(model.text("inventory.price.trend"))
-                                        .font(.headline)
+                                    VStack(alignment: .leading, spacing: 7) {
+                                        Text(model.text("inventory.price.trend"))
+                                            .font(.headline)
+                                        comparisonPill(summary)
+                                    }
                                     Spacer()
                                     if let selectedRecord {
                                         Text(
@@ -124,7 +186,9 @@ struct InventoryPriceHistoryView: View {
 
                         LifeSectionHeader(
                             title: model.text("inventory.price.records"),
-                            detail: "\(records.count)"
+                            detail: "\(records.count)",
+                            systemImage: "clock.arrow.circlepath",
+                            showsDivider: true
                         )
 
                         LifeCardGrid {
@@ -158,112 +222,109 @@ struct InventoryPriceHistoryView: View {
         .sheet(isPresented: $isShowingCountEditor) {
             InventoryCountEditorView(
                 model: model,
-                item: item,
+                item: currentItem,
                 currentQuantity: model.life.currentQuantity(for: item.id) ?? 0,
                 currentUnitPrice: summary?.latest.unitPrice ?? 0
+            )
+        }
+        .sheet(isPresented: $isShowingItemEditor) {
+            HouseholdItemEditorView(
+                model: model,
+                item: currentItem,
+                isFirstItem: false
             )
         }
         .sheet(item: $correctionRecord) { record in
             LatestInventoryPriceCorrectionView(
                 model: model,
-                item: item,
+                item: currentItem,
                 record: record
             )
         }
     }
 
-    private func priceLabel(_ price: Decimal) -> String {
-        "\(LifeFormat.currency(price))/\(unit)"
-    }
-}
-
-struct InventoryPriceCompactSection: View {
-    @ObservedObject var model: AppModel
-    let item: HouseholdItem
-    let updateQuantityAndPrice: () -> Void
-    let showHistory: () -> Void
-
-    private var records: [InventoryPriceRecord] {
-        Array(
-            model.life.inventoryPriceHistory(for: item.id)
-                .sorted {
-                    if $0.purchasedAt == $1.purchasedAt {
-                        return $0.createdAt < $1.createdAt
-                    }
-                    return $0.purchasedAt < $1.purchasedAt
-                }
-                .suffix(12)
-        )
+    private var detailSubtitle: String {
+        let details = model.text("inventory.details.title")
+        guard !currentItem.storageLocation.isEmpty else { return details }
+        return "\(details) · \(currentItem.storageLocation)"
     }
 
-    private var summary: InventoryPriceSummary? {
-        model.life.inventoryPriceSummary(for: item.id)
-    }
-
-    private var unit: String {
-        item.unit.isEmpty ? model.text("inventory.unit.default") : item.unit
-    }
-
-    var body: some View {
-        if let summary {
-            VStack(alignment: .leading, spacing: 9) {
-                HStack(spacing: 12) {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(model.text("inventory.price.latest"))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        Text(priceLabel(summary.latest.unitPrice))
-                            .font(.subheadline.weight(.semibold))
-                            .monospacedDigit()
-                    }
-                    Spacer()
-                    VStack(alignment: .trailing, spacing: 2) {
-                        Text(model.text("inventory.price.lowest"))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                        Text(priceLabel(summary.lowest))
-                            .font(.subheadline.weight(.medium))
-                            .foregroundStyle(.green)
-                            .monospacedDigit()
-                    }
-                }
-
-                InventoryPriceSparkline(
-                    records: records,
-                    unit: unit,
-                    model: model
-                )
-                .frame(height: 54)
-
-                comparisonPill(summary)
-            }
-            .contentShape(Rectangle())
-            .onTapGesture(perform: showHistory)
-            .accessibilityAction(
-                named: Text(model.text("inventory.price.history")),
-                showHistory
-            )
-        } else {
-            HStack(spacing: 9) {
-                Image(systemName: "tag.slash")
-                    .symbolRenderingMode(.hierarchical)
-                    .foregroundStyle(.secondary)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(model.text("inventory.price.empty.title"))
+    private var inventoryOverview: some View {
+        LifeCard {
+            HStack(alignment: .top, spacing: 22) {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(model.text("inventory.field.quantity"))
                         .font(.subheadline.weight(.medium))
-                    Text(model.text("inventory.price.empty.compact"))
-                        .font(.caption)
                         .foregroundStyle(.secondary)
+
+                    Text(
+                        currentQuantity.map {
+                            LifeFormat.quantity($0, unit: currentItem.unit)
+                        } ?? "—"
+                    )
+                    .font(.system(.largeTitle, design: .rounded, weight: .semibold))
+                    .monospacedDigit()
+
+                    HStack(spacing: 6) {
+                        if currentQuantity == nil {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.notRecorded"),
+                                systemImage: "questionmark.circle",
+                                tint: .secondary
+                            )
+                        } else if isLowStock {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.low"),
+                                systemImage: "exclamationmark.triangle.fill",
+                                tint: .orange
+                            )
+                        } else {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.ok"),
+                                systemImage: "checkmark.circle.fill",
+                                tint: .green
+                            )
+                        }
+
+                        if isExpiring {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.expiring"),
+                                systemImage: "calendar.badge.exclamationmark",
+                                tint: .red
+                            )
+                        }
+                    }
                 }
-                Spacer()
-                Button(
-                    model.text("inventory.quantityPrice.update"),
-                    action: updateQuantityAndPrice
-                )
-                    .buttonStyle(.bordered)
-                    .controlSize(.small)
+                .frame(minWidth: 210, alignment: .leading)
+
+                Divider()
+                    .frame(minHeight: 112)
+
+                VStack(alignment: .leading, spacing: 8) {
+                    InventoryMetadataRow(
+                        title: model.text("inventory.field.location"),
+                        value: currentItem.storageLocation.isEmpty
+                            ? "—"
+                            : currentItem.storageLocation
+                    )
+                    InventoryMetadataRow(
+                        title: model.text("inventory.field.lowThreshold"),
+                        value: LifeFormat.quantity(
+                            currentItem.lowStockThreshold,
+                            unit: currentItem.unit
+                        )
+                    )
+                    InventoryMetadataRow(
+                        title: model.text("inventory.lastCount"),
+                        value: LifeFormat.date(latestCount?.recordedAt)
+                    )
+                    InventoryMetadataRow(
+                        title: model.text("inventory.expiration"),
+                        value: LifeFormat.date(currentItem.nearestExpirationDate)
+                    )
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .accessibilityElement(children: .combine)
         }
     }
 
@@ -309,48 +370,6 @@ struct InventoryPriceCompactSection: View {
 
     private func percentageLabel(_ percentage: Decimal) -> String {
         "\(percentage.formatted(.number.precision(.fractionLength(0...1))))%"
-    }
-}
-
-private struct InventoryPriceSparkline: View {
-    let records: [InventoryPriceRecord]
-    let unit: String
-    @ObservedObject var model: AppModel
-
-    var body: some View {
-        Chart(records) { record in
-            if records.count == 1 {
-                PointMark(
-                    x: .value(model.text("inventory.price.purchaseDate"), record.purchasedAt),
-                    y: .value(model.text("inventory.price.unitPrice"), record.unitPrice.lifeDoubleValue)
-                )
-                .foregroundStyle(Color.accentColor)
-                .symbolSize(36)
-            } else {
-                LineMark(
-                    x: .value(model.text("inventory.price.purchaseDate"), record.purchasedAt),
-                    y: .value(model.text("inventory.price.unitPrice"), record.unitPrice.lifeDoubleValue)
-                )
-                .foregroundStyle(Color.accentColor)
-                .lineStyle(StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
-
-                PointMark(
-                    x: .value(model.text("inventory.price.purchaseDate"), record.purchasedAt),
-                    y: .value(model.text("inventory.price.unitPrice"), record.unitPrice.lifeDoubleValue)
-                )
-                .foregroundStyle(Color.accentColor)
-                .symbolSize(14)
-            }
-        }
-        .chartXAxis(.hidden)
-        .chartYAxis(.hidden)
-        .chartLegend(.hidden)
-        .accessibilityLabel(model.text("inventory.price.trend"))
-        .accessibilityValue(
-            records.last.map {
-                "\(LifeFormat.currency($0.unitPrice))/\(unit)"
-            } ?? model.text("inventory.price.empty.title")
-        )
     }
 }
 

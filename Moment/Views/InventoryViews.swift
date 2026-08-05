@@ -8,7 +8,7 @@ struct InventoryWorkspace: View {
     @State private var editorItem: HouseholdItem?
     @State private var isShowingEditor = false
     @State private var countItem: HouseholdItem?
-    @State private var priceHistoryItem: HouseholdItem?
+    @State private var detailItem: HouseholdItem?
 
     private var activeItems: [HouseholdItem] {
         model.life.householdItems.filter { !$0.isArchived }
@@ -90,8 +90,8 @@ struct InventoryWorkspace: View {
                                 updateQuantity: {
                                     countItem = item
                                 },
-                                showPriceHistory: {
-                                    priceHistoryItem = item
+                                openDetails: {
+                                    detailItem = item
                                 },
                                 archive: {
                                     model.archiveHouseholdItem(item)
@@ -149,8 +149,8 @@ struct InventoryWorkspace: View {
                     .latest.unitPrice ?? 0
             )
         }
-        .sheet(item: $priceHistoryItem) { item in
-            InventoryPriceHistoryView(model: model, item: item)
+        .sheet(item: $detailItem) { item in
+            InventoryItemDetailView(model: model, item: item)
         }
     }
 
@@ -255,7 +255,7 @@ private struct InventoryItemCard: View {
     let wasReviewedThisWeek: Bool
     let edit: () -> Void
     let updateQuantity: () -> Void
-    let showPriceHistory: () -> Void
+    let openDetails: () -> Void
     let archive: () -> Void
 
     private var isLow: Bool {
@@ -270,132 +270,95 @@ private struct InventoryItemCard: View {
 
     var body: some View {
         LifeCard {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(item.name)
-                            .font(.headline)
-                            .lineLimit(1)
-                        if !item.storageLocation.isEmpty {
-                            Text(item.storageLocation)
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+            Button(action: openDetails) {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack(alignment: .top, spacing: 12) {
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text(item.name)
+                                .font(.headline)
                                 .lineLimit(1)
+                            if !item.storageLocation.isEmpty {
+                                Text(item.storageLocation)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+                        Spacer()
+                        HStack(spacing: 7) {
+                            if !wasReviewedThisWeek {
+                                Image(systemName: "calendar.badge.exclamationmark")
+                                    .foregroundStyle(.secondary)
+                                    .help(model.text("inventory.status.unreviewed"))
+                            }
+                            Image(systemName: "chevron.right")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(.tertiary)
                         }
                     }
-                    Spacer()
-                    Menu {
-                        Button(
-                            model.text("inventory.quantityPrice.update"),
-                            action: updateQuantity
-                        )
-                        Button(
-                            model.text("inventory.price.history"),
-                            action: showPriceHistory
-                        )
-                        Button(model.text("common.edit"), action: edit)
-                        Divider()
-                        Button(
-                            model.text("common.archive"),
-                            role: .destructive,
-                            action: archive
-                        )
-                    } label: {
-                        Image(systemName: "ellipsis.circle")
-                            .foregroundStyle(.secondary)
-                    }
-                    .menuStyle(.borderlessButton)
-                    .fixedSize()
-                }
 
-                Text(
-                    quantity.map {
-                        LifeFormat.quantity($0, unit: item.unit)
-                    } ?? "—"
-                )
-                    .font(.system(.title2, design: .rounded, weight: .semibold))
-                    .monospacedDigit()
-
-                HStack(spacing: 6) {
-                    if quantity == nil {
-                        LifeStatusPill(
-                            title: model.text("inventory.status.notRecorded"),
-                            systemImage: "questionmark.circle",
-                            tint: .secondary
-                        )
-                    } else if isLow {
-                        LifeStatusPill(
-                            title: model.text("inventory.status.low"),
-                            systemImage: "exclamationmark.triangle.fill",
-                            tint: .orange
-                        )
-                    } else {
-                        LifeStatusPill(
-                            title: model.text("inventory.status.ok"),
-                            systemImage: "checkmark.circle.fill",
-                            tint: .green
-                        )
-                    }
-                    if isExpiring {
-                        LifeStatusPill(
-                            title: model.text("inventory.status.expiring"),
-                            systemImage: "calendar.badge.exclamationmark",
-                            tint: .red
-                        )
-                    }
-                    if !wasReviewedThisWeek {
-                        LifeStatusPill(
-                            title: model.text("inventory.status.unreviewed"),
-                            systemImage: "questionmark.circle",
-                            tint: .secondary
-                        )
-                    }
-                }
-
-                Divider()
-
-                VStack(alignment: .leading, spacing: 5) {
-                    InventoryMetadataRow(
-                        title: model.text("inventory.lastCount"),
-                        value: LifeFormat.date(latestCount?.recordedAt)
+                    Text(
+                        quantity.map {
+                            LifeFormat.quantity($0, unit: item.unit)
+                        } ?? "—"
                     )
-                    InventoryMetadataRow(
-                        title: model.text("inventory.expiration"),
-                        value: LifeFormat.date(item.nearestExpirationDate)
+                        .font(.system(.title2, design: .rounded, weight: .semibold))
+                        .monospacedDigit()
+
+                    HStack(spacing: 6) {
+                        if quantity == nil {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.notRecorded"),
+                                systemImage: "questionmark.circle",
+                                tint: .secondary
+                            )
+                        } else if isLow {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.low"),
+                                systemImage: "exclamationmark.triangle.fill",
+                                tint: .orange
+                            )
+                        } else {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.ok"),
+                                systemImage: "checkmark.circle.fill",
+                                tint: .green
+                            )
+                        }
+                        if isExpiring {
+                            LifeStatusPill(
+                                title: model.text("inventory.status.expiring"),
+                                systemImage: "calendar.badge.exclamationmark",
+                                tint: .red
+                            )
+                        }
+                    }
+
+                    Divider()
+
+                    Label(
+                        LifeFormat.date(latestCount?.recordedAt),
+                        systemImage: "clock"
                     )
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 }
-
-                Divider()
-
-                InventoryPriceCompactSection(
-                    model: model,
-                    item: item,
-                    updateQuantityAndPrice: updateQuantity,
-                    showHistory: showPriceHistory
-                )
-
-                Divider()
-
-                Button(
-                    model.text("inventory.quantityPrice.update"),
-                    action: updateQuantity
-                )
-                    .buttonStyle(.bordered)
-
-                Button(
-                    model.text("inventory.price.history"),
-                    action: showPriceHistory
-                )
-                .buttonStyle(.bordered)
-                .controlSize(.small)
+                .frame(maxWidth: .infinity, minHeight: 132, alignment: .topLeading)
+                .contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
         }
+        .accessibilityLabel(item.name)
+        .accessibilityValue(
+            quantity.map { LifeFormat.quantity($0, unit: item.unit) } ?? "—"
+        )
+        .accessibilityHint(model.text("inventory.details.open"))
         .contextMenu {
+            Button(model.text("inventory.details.open"), action: openDetails)
             Button(
                 model.text("inventory.quantityPrice.update"),
                 action: updateQuantity
             )
-            Button(model.text("inventory.price.history"), action: showPriceHistory)
             Button(model.text("common.edit"), action: edit)
             Divider()
             Button(model.text("common.archive"), role: .destructive, action: archive)
@@ -403,7 +366,7 @@ private struct InventoryItemCard: View {
     }
 }
 
-private struct InventoryMetadataRow: View {
+struct InventoryMetadataRow: View {
     let title: String
     let value: String
 
@@ -419,7 +382,7 @@ private struct InventoryMetadataRow: View {
     }
 }
 
-private struct HouseholdItemEditorView: View {
+struct HouseholdItemEditorView: View {
     @ObservedObject var model: AppModel
     @Environment(\.dismiss) private var dismiss
     let item: HouseholdItem?
