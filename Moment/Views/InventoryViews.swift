@@ -729,7 +729,7 @@ private struct ReviewItemCard: View {
                         } label: {
                             Image(systemName: "arrow.uturn.backward.circle")
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(HoverIconButtonStyle(kind: .accent))
                         .help(model.text("inventory.review.skip"))
                     }
                 }

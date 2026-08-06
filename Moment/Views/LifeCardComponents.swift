@@ -1,5 +1,74 @@
 import SwiftUI
 
+enum HoverIconButtonKind {
+    case neutral
+    case accent
+    case destructive
+}
+
+struct HoverIconButtonStyle: ButtonStyle {
+    var kind: HoverIconButtonKind = .neutral
+    var size: CGFloat = 28
+
+    func makeBody(configuration: Configuration) -> some View {
+        HoverIconButtonBody(
+            label: configuration.label,
+            isPressed: configuration.isPressed,
+            kind: kind,
+            size: size
+        )
+    }
+}
+
+private struct HoverIconButtonBody<Label: View>: View {
+    let label: Label
+    let isPressed: Bool
+    let kind: HoverIconButtonKind
+    let size: CGFloat
+
+    @Environment(\.isEnabled) private var isEnabled
+    @State private var isHovering = false
+
+    var body: some View {
+        label
+            .foregroundStyle(foregroundColor)
+            .frame(width: size, height: size)
+            .background(
+                backgroundColor,
+                in: RoundedRectangle(cornerRadius: 6, style: .continuous)
+            )
+            .contentShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+            .scaleEffect(isPressed ? 0.94 : 1)
+            .animation(.easeOut(duration: 0.12), value: isHovering)
+            .animation(.easeOut(duration: 0.08), value: isPressed)
+            .onHover { isHovering = $0 }
+    }
+
+    private var foregroundColor: Color {
+        guard isEnabled else { return .secondary.opacity(0.42) }
+        switch kind {
+        case .neutral:
+            return isHovering ? .primary : .secondary
+        case .accent:
+            return isHovering ? .accentColor : .secondary
+        case .destructive:
+            return isHovering ? .red : .secondary
+        }
+    }
+
+    private var backgroundColor: Color {
+        guard isEnabled, isHovering else { return .clear }
+        switch kind {
+        case .neutral:
+            return Color.primary.opacity(isPressed ? 0.13 : 0.08)
+        case .accent:
+            return Color.accentColor.opacity(isPressed ? 0.18 : 0.11)
+        case .destructive:
+            return Color.red.opacity(isPressed ? 0.2 : 0.12)
+        }
+    }
+}
+
 struct LifeCard<Content: View>: View {
     private let content: Content
     @State private var isHovering = false

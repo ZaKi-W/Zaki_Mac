@@ -41,7 +41,7 @@ private struct BrowserTabStrip: View {
                     Image(systemName: "plus")
                         .frame(width: 26, height: 24)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(HoverIconButtonStyle(kind: .accent, size: 26))
                 .help("New Tab")
             }
             .padding(.horizontal, 8)
@@ -74,7 +74,7 @@ private struct BrowserTabButton: View {
                     .font(.caption2)
                     .frame(width: 14, height: 14)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(size: 22))
         }
         .font(.caption)
         .padding(.leading, 9)
@@ -284,8 +284,7 @@ private struct BrowserStartPage: View {
                                 } label: {
                                     Image(systemName: "xmark")
                                 }
-                                .buttonStyle(.plain)
-                                .foregroundStyle(.secondary)
+                                .buttonStyle(HoverIconButtonStyle(kind: .destructive, size: 24))
                             }
                             .padding(.vertical, 5)
                         }

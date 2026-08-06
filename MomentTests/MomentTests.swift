@@ -188,7 +188,249 @@ final class MomentTests: XCTestCase {
         )
 
         XCTAssertEqual(restored, original)
+        XCTAssertEqual(restored.version, 5)
+    }
+
+    func testVersionFourTodoDefaultsToUnscheduledWithoutNotifications() throws {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let data = Data(
+            """
+            {
+              "version": 4,
+              "reminders": [],
+              "bookmarks": [],
+              "todos": [
+                {
+                  "id": "legacy-todo",
+                  "title": "Legacy task",
+                  "createdAt": "2026-08-01T00:00:00Z",
+                  "completedAt": null
+                }
+              ],
+              "life": {}
+            }
+            """.utf8
+        )
+
+        let restored = try decoder.decode(PersistedAppData.self, from: data)
+        let todo = try XCTUnwrap(restored.todos.first)
+
         XCTAssertEqual(restored.version, 4)
+        XCTAssertEqual(PersistedAppData.currentVersion, 5)
+        XCTAssertNil(todo.scheduledDay)
+        XCTAssertNil(todo.startTime)
+        XCTAssertEqual(todo.recurrence, .none)
+        XCTAssertFalse(todo.notificationEnabled)
+        XCTAssertNil(todo.notificationTime)
+        XCTAssertFalse(todo.completionFollowUpEnabled)
+        XCTAssertTrue(todo.occurrenceStatuses.isEmpty)
+        XCTAssertTrue(todo.occurrenceOverrides.isEmpty)
+        let occurrence = try XCTUnwrap(
+            todo.occurrence(for: .once(todoID: todo.id))
+        )
+        XCTAssertNil(occurrence.scheduledDay)
+    }
+
+    func testLocalDayRoundTripDoesNotDriftAcrossTimeZones() throws {
+        let localDay = LocalDay(year: 2026, month: 8, day: 1)
+        let encoded = try JSONEncoder().encode(localDay)
+        XCTAssertEqual(try JSONDecoder().decode(LocalDay.self, from: encoded), localDay)
+
+        var eastCalendar = Calendar(identifier: .gregorian)
+        eastCalendar.timeZone = TimeZone(secondsFromGMT: 14 * 3_600)!
+        var westCalendar = Calendar(identifier: .gregorian)
+        westCalendar.timeZone = TimeZone(secondsFromGMT: -8 * 3_600)!
+
+        let eastDate = try XCTUnwrap(
+            localDay.date(at: LocalTime(hour: 9, minute: 15), calendar: eastCalendar)
+        )
+        let westDate = try XCTUnwrap(
+            localDay.date(at: LocalTime(hour: 9, minute: 15), calendar: westCalendar)
+        )
+
+        XCTAssertEqual(LocalDay(date: eastDate, calendar: eastCalendar), localDay)
+        XCTAssertEqual(LocalDay(date: westDate, calendar: westCalendar), localDay)
+        XCTAssertNotEqual(eastDate, westDate)
+    }
+
+    func testMonthlyTodoClampsMonthEndAndKeepsStableOccurrenceID() throws {
+        let todo = TodoRecord(
+            id: "month-end",
+            title: "Close books",
+            scheduledDay: LocalDay(year: 2026, month: 1, day: 31),
+            recurrence: .monthly
+        )
+        let februaryID = TodoOccurrenceID.monthly(
+            todoID: todo.id,
+            year: 2026,
+            month: 2
+        )
+        let leapFebruaryID = TodoOccurrenceID.monthly(
+            todoID: todo.id,
+            year: 2028,
+            month: 2
+        )
+        let aprilID = TodoOccurrenceID.monthly(
+            todoID: todo.id,
+            year: 2026,
+            month: 4
+        )
+
+        XCTAssertEqual(
+            todo.occurrence(for: februaryID)?.scheduledDay,
+            LocalDay(year: 2026, month: 2, day: 28)
+        )
+        XCTAssertEqual(
+            todo.occurrence(for: leapFebruaryID)?.scheduledDay,
+            LocalDay(year: 2028, month: 2, day: 29)
+        )
+        XCTAssertEqual(
+            todo.occurrence(for: aprilID)?.scheduledDay,
+            LocalDay(year: 2026, month: 4, day: 30)
+        )
+        XCTAssertEqual(februaryID.rawValue, "month-end|2026-02")
+        XCTAssertEqual(TodoOccurrenceID(rawValue: februaryID.rawValue), februaryID)
+        XCTAssertTrue(todo.completionFollowUpEnabled)
+    }
+
+    func testMonthlyOccurrenceStatusAndOverrideAreIndependent() throws {
+        let changedAt = Date(timeIntervalSince1970: 5_000)
+        var todo = TodoRecord(
+            id: "monthly",
+            title: "Pay fee",
+            createdAt: changedAt,
+            scheduledDay: LocalDay(year: 2026, month: 1, day: 15),
+            startTime: LocalTime(hour: 10, minute: 0),
+            recurrence: .monthly,
+            notificationEnabled: true
+        )
+        let januaryID = TodoOccurrenceID.monthly(
+            todoID: todo.id,
+            year: 2026,
+            month: 1
+        )
+        let februaryID = TodoOccurrenceID.monthly(
+            todoID: todo.id,
+            year: 2026,
+            month: 2
+        )
+
+        todo.setOccurrenceCompleted(januaryID, completed: true, at: changedAt)
+        todo.markOccurrenceSkipped(februaryID, at: changedAt)
+        todo.setOccurrenceOverride(
+            TodoOccurrenceOverride(
+                occurrenceID: februaryID,
+                title: "Pay adjusted fee",
+                scheduledDay: LocalDay(year: 2026, month: 2, day: 20),
+                startTime: nil,
+                notificationEnabled: false,
+                completionFollowUpEnabled: true
+            )
+        )
+
+        let january = try XCTUnwrap(todo.occurrence(for: januaryID))
+        let february = try XCTUnwrap(todo.occurrence(for: februaryID))
+        XCTAssertTrue(january.isCompleted)
+        XCTAssertFalse(january.isSkipped)
+        XCTAssertTrue(february.isSkipped)
+        XCTAssertEqual(february.title, "Pay adjusted fee")
+        XCTAssertEqual(
+            february.scheduledDay,
+            LocalDay(year: 2026, month: 2, day: 20)
+        )
+        XCTAssertNil(february.startTime)
+        XCTAssertFalse(february.notificationEnabled)
+
+        todo.clearOccurrenceState(for: februaryID)
+        XCTAssertEqual(todo.state(for: februaryID), .active)
+        XCTAssertTrue(todo.occurrence(for: januaryID)?.isCompleted == true)
+
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        XCTAssertEqual(
+            try decoder.decode(TodoRecord.self, from: encoder.encode(todo)),
+            todo
+        )
+    }
+
+    func testMonthlyTodoReplacesPreviousOccurrenceOnNextDueDate() throws {
+        var todo = TodoRecord(
+            id: "replacement",
+            title: "Monthly check",
+            scheduledDay: LocalDay(year: 2026, month: 1, day: 15),
+            recurrence: .monthly
+        )
+
+        XCTAssertTrue(
+            todo.markPastMonthlyOccurrencesSkipped(
+                before: LocalDay(year: 2026, month: 2, day: 14)
+            ).isEmpty
+        )
+        let skipped = todo.markPastMonthlyOccurrencesSkipped(
+            before: LocalDay(year: 2026, month: 2, day: 15)
+        )
+
+        XCTAssertEqual(skipped.map(\.rawValue), ["replacement|2026-01"])
+        XCTAssertEqual(
+            todo.state(for: .monthly(todoID: todo.id, year: 2026, month: 1)),
+            .skipped
+        )
+        XCTAssertEqual(
+            todo.state(for: .monthly(todoID: todo.id, year: 2026, month: 2)),
+            .active
+        )
+    }
+
+    func testTodoFollowUpScheduleUsesWorkdaysAndThreeDailyChecks() throws {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
+        func date(_ day: Int, _ hour: Int, _ minute: Int) throws -> Date {
+            try XCTUnwrap(
+                calendar.date(
+                    from: DateComponents(
+                        year: 2026,
+                        month: 8,
+                        day: day,
+                        hour: hour,
+                        minute: minute
+                    )
+                )
+            )
+        }
+
+        let weekdayDates = TodoFollowUpSchedule.dates(
+            scheduledDay: LocalDay(year: 2026, month: 8, day: 7),
+            now: try date(7, 16, 0),
+            through: try date(10, 18, 0),
+            calendar: calendar
+        )
+        XCTAssertEqual(
+            weekdayDates,
+            [
+                try date(7, 17, 30),
+                try date(10, 9, 0),
+                try date(10, 13, 30),
+                try date(10, 17, 30)
+            ]
+        )
+
+        let weekendDates = TodoFollowUpSchedule.dates(
+            scheduledDay: LocalDay(year: 2026, month: 8, day: 8),
+            now: try date(8, 8, 0),
+            through: try date(10, 18, 0),
+            calendar: calendar
+        )
+        XCTAssertEqual(
+            weekendDates,
+            [
+                try date(10, 9, 0),
+                try date(10, 13, 30),
+                try date(10, 17, 30)
+            ]
+        )
     }
 
     func testVersionTwoDataRoundTripsLifeData() throws {

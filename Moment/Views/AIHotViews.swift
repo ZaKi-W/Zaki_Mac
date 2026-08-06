@@ -209,7 +209,7 @@ private struct AIHotSelectedView: View {
                             Image(systemName: "xmark.circle.fill")
                                 .foregroundStyle(.tertiary)
                         }
-                        .buttonStyle(.plain)
+                        .buttonStyle(HoverIconButtonStyle(size: 22))
                         .help(model.text("aihot.search.clear"))
                     }
                 }
@@ -861,8 +861,7 @@ private struct AIHotDailyFlashRow: View {
                 } label: {
                     Image(systemName: "arrow.up.right.square")
                 }
-                .buttonStyle(.plain)
-                .foregroundStyle(.secondary)
+                .buttonStyle(HoverIconButtonStyle(kind: .accent, size: 26))
                 .help(model.text("aihot.original"))
             }
         }
@@ -996,7 +995,7 @@ private struct AIHotErrorBanner: View {
             Button(action: dismiss) {
                 Image(systemName: "xmark")
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(size: 24))
             .help(model.text("aihot.dismiss"))
         }
         .padding(12)

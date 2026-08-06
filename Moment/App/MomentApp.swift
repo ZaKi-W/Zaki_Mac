@@ -54,6 +54,24 @@ final class MomentAppDelegate: NSObject, NSApplicationDelegate {
             name: .momentNotificationSelection,
             object: nil
         )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(resynchronizeForCalendarChange),
+            name: NSApplication.didBecomeActiveNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(resynchronizeForCalendarChange),
+            name: .NSCalendarDayChanged,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(resynchronizeForCalendarChange),
+            name: .NSSystemTimeZoneDidChange,
+            object: nil
+        )
     }
 
     func applicationShouldTerminateAfterLastWindowClosed(
@@ -71,6 +89,10 @@ final class MomentAppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func didWake() {
+        AppModel.shared.resynchronizeAfterWake()
+    }
+
+    @objc private func resynchronizeForCalendarChange() {
         AppModel.shared.resynchronizeAfterWake()
     }
 

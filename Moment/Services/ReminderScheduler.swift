@@ -13,11 +13,91 @@ protocol ReminderScheduling: Sendable {
     func deliverPreview(body: String) async -> Bool
     func synchronize(
         _ reminders: [ReminderRecord],
+        todos: [TodoRecord],
         life: LifeData,
         language: AppLanguage,
         onFire: @escaping @Sendable (String, Date) -> Void
     ) async
     func cancelAll() async
+}
+
+enum TodoFollowUpSchedule {
+    static func dates(
+        scheduledDay: LocalDay,
+        now: Date,
+        through endDate: Date,
+        calendar: Calendar
+    ) -> [Date] {
+        guard let dueDate = scheduledDay.date(at: .midnight, calendar: calendar) else {
+            return []
+        }
+        let dueOnWorkday = (2...6).contains(
+            calendar.component(.weekday, from: dueDate)
+        )
+        let firstDay: Date
+        if dueOnWorkday {
+            firstDay = dueDate
+        } else if let next = nextWorkday(after: dueDate, calendar: calendar) {
+            firstDay = next
+        } else {
+            return []
+        }
+
+        var result: [Date] = []
+        var day = max(firstDay, calendar.startOfDay(for: now))
+        while day <= endDate {
+            if (2...6).contains(calendar.component(.weekday, from: day)) {
+                let isDueWorkday = dueOnWorkday
+                    && calendar.isDate(day, inSameDayAs: dueDate)
+                let times: [LocalTime] = isDueWorkday
+                    ? [LocalTime(hour: 17, minute: 30)]
+                    : [
+                        LocalTime(hour: 9, minute: 0),
+                        LocalTime(hour: 13, minute: 30),
+                        LocalTime(hour: 17, minute: 30)
+                    ]
+                let localDay = LocalDay(date: day, calendar: calendar)
+                result.append(contentsOf: times.compactMap { time in
+                    guard let fireAt = localDay.date(at: time, calendar: calendar),
+                          fireAt > now,
+                          fireAt <= endDate else {
+                        return nil
+                    }
+                    return fireAt
+                })
+            }
+            guard let nextDay = calendar.date(
+                byAdding: .day,
+                value: 1,
+                to: day
+            ) else {
+                break
+            }
+            day = nextDay
+        }
+        return result
+    }
+
+    private static func nextWorkday(
+        after date: Date,
+        calendar: Calendar
+    ) -> Date? {
+        var day = date
+        for _ in 0..<7 {
+            guard let next = calendar.date(
+                byAdding: .day,
+                value: 1,
+                to: day
+            ) else {
+                return nil
+            }
+            day = next
+            if (2...6).contains(calendar.component(.weekday, from: day)) {
+                return day
+            }
+        }
+        return nil
+    }
 }
 
 final class MomentNotificationDelegate:
@@ -26,6 +106,8 @@ final class MomentNotificationDelegate:
     @unchecked Sendable
 {
     static let shared = MomentNotificationDelegate()
+    static let todoCategoryIdentifier = "moment.todo.category"
+    static let todoCompleteActionIdentifier = "moment.todo.complete"
 
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
@@ -48,9 +130,18 @@ final class MomentNotificationDelegate:
             return
         }
 
-        var selectionInfo: [String: String] = ["route": route]
+        var selectionInfo: [String: String] = [
+            "route": route,
+            "actionIdentifier": response.actionIdentifier
+        ]
         if let expenseID = notificationInfo["expenseID"] as? String {
             selectionInfo["expenseID"] = expenseID
+        }
+        if let todoID = notificationInfo["todoID"] as? String {
+            selectionInfo["todoID"] = todoID
+        }
+        if let occurrenceID = notificationInfo["occurrenceID"] as? String {
+            selectionInfo["occurrenceID"] = occurrenceID
         }
         NotificationCenter.default.post(
             name: Notification.Name("moment.notification-selection"),
@@ -67,6 +158,21 @@ actor ReminderScheduler: ReminderScheduling {
     init(center: UNUserNotificationCenter = .current()) {
         self.center = center
         center.delegate = MomentNotificationDelegate.shared
+        center.setNotificationCategories([
+            UNNotificationCategory(
+                identifier: MomentNotificationDelegate.todoCategoryIdentifier,
+                actions: [
+                    UNNotificationAction(
+                        identifier: MomentNotificationDelegate
+                            .todoCompleteActionIdentifier,
+                        title: "完成",
+                        options: []
+                    )
+                ],
+                intentIdentifiers: [],
+                options: []
+            )
+        ])
     }
 
     func requestAuthorization() async -> Bool {
@@ -112,10 +218,12 @@ actor ReminderScheduler: ReminderScheduling {
 
     func synchronize(
         _ reminders: [ReminderRecord],
+        todos: [TodoRecord],
         life: LifeData,
         language: AppLanguage,
         onFire: @escaping @Sendable (String, Date) -> Void
     ) async {
+        registerTodoNotificationCategory(language: language)
         for task in monitorTasks.values {
             task.cancel()
         }
@@ -164,6 +272,7 @@ actor ReminderScheduler: ReminderScheduling {
 
         await scheduleInventoryReview(from: life, language: language)
         await scheduleRecurringExpenses(from: life, language: language)
+        await synchronizeTodos(todos, language: language)
     }
 
     func cancelAll() async {
@@ -180,6 +289,24 @@ actor ReminderScheduler: ReminderScheduling {
             .filter { $0.hasPrefix("moment.") }
         guard !identifiers.isEmpty else { return }
         center.removePendingNotificationRequests(withIdentifiers: identifiers)
+    }
+
+    private func registerTodoNotificationCategory(language: AppLanguage) {
+        center.setNotificationCategories([
+            UNNotificationCategory(
+                identifier: MomentNotificationDelegate.todoCategoryIdentifier,
+                actions: [
+                    UNNotificationAction(
+                        identifier: MomentNotificationDelegate
+                            .todoCompleteActionIdentifier,
+                        title: language == .zh ? "完成" : "Complete",
+                        options: []
+                    )
+                ],
+                intentIdentifiers: [],
+                options: []
+            )
+        ])
     }
 
     private func scheduleInventoryReview(
@@ -290,6 +417,254 @@ actor ReminderScheduler: ReminderScheduling {
                 // A later synchronization will retry scheduling.
             }
         }
+    }
+
+    private struct TodoNotificationCandidate {
+        let identifier: String
+        let fireAt: Date
+        let content: UNMutableNotificationContent
+    }
+
+    private func synchronizeTodos(
+        _ todos: [TodoRecord],
+        language: AppLanguage
+    ) async {
+        let pendingTodoIDs = await center.pendingNotificationRequests()
+            .map(\.identifier)
+            .filter { $0.hasPrefix("moment.todo.") }
+        if !pendingTodoIDs.isEmpty {
+            center.removePendingNotificationRequests(
+                withIdentifiers: pendingTodoIDs
+            )
+        }
+
+        let now = Date()
+        let calendar = Calendar.current
+        let todayDate = calendar.startOfDay(for: now)
+        guard
+            let previousMonthDate = calendar.date(
+                byAdding: .month,
+                value: -1,
+                to: todayDate
+            ),
+            let scheduleHorizonDate = calendar.date(
+                byAdding: .day,
+                value: 370,
+                to: todayDate
+            ),
+            let followUpHorizonDate = calendar.date(
+                byAdding: .day,
+                value: 30,
+                to: todayDate
+            )
+        else {
+            return
+        }
+
+        let previousMonth = LocalDay(
+            date: previousMonthDate,
+            calendar: calendar
+        )
+        let scheduleHorizon = LocalDay(
+            date: scheduleHorizonDate,
+            calendar: calendar
+        )
+        var activeOccurrenceIDs: Set<String> = []
+        var candidates: [TodoNotificationCandidate] = []
+
+        for todo in todos {
+            guard let scheduledDay = todo.scheduledDay else { continue }
+            let rangeStart: LocalDay
+            switch todo.recurrence {
+            case .none:
+                rangeStart = scheduledDay
+            case .monthly:
+                rangeStart = previousMonth
+            }
+
+            let occurrences = todo.occurrences(
+                from: rangeStart,
+                through: scheduleHorizon,
+                calendar: calendar
+            )
+            for (index, occurrence) in occurrences.enumerated()
+            where occurrence.state == .active {
+                guard occurrence.scheduledDay != nil else { continue }
+                activeOccurrenceIDs.insert(occurrence.id.rawValue)
+                if occurrence.notificationEnabled,
+                   let initial = initialTodoNotification(
+                       for: occurrence,
+                       now: now,
+                       calendar: calendar
+                   ) {
+                    candidates.append(initial)
+                }
+
+                guard occurrence.completionFollowUpEnabled else { continue }
+                var occurrenceFollowUpEnd = followUpHorizonDate
+                if occurrences.indices.contains(index + 1),
+                   let nextScheduledDay = occurrences[index + 1].scheduledDay,
+                   let nextOccurrenceDate = nextScheduledDay.date(
+                        at: LocalTime(hour: 0, minute: 0),
+                        calendar: calendar
+                    ),
+                   let justBeforeNextOccurrence = calendar.date(
+                        byAdding: .second,
+                        value: -1,
+                        to: nextOccurrenceDate
+                   ) {
+                    occurrenceFollowUpEnd = min(
+                        occurrenceFollowUpEnd,
+                        justBeforeNextOccurrence
+                    )
+                }
+                candidates.append(contentsOf: followUpNotifications(
+                    for: occurrence,
+                    now: now,
+                    through: occurrenceFollowUpEnd,
+                    calendar: calendar,
+                    language: language
+                ))
+            }
+        }
+
+        let staleDeliveredTodoIDs = await center.deliveredNotifications()
+            .filter { notification in
+                let request = notification.request
+                guard request.identifier.hasPrefix("moment.todo.") else {
+                    return false
+                }
+                guard let occurrenceID = request.content
+                    .userInfo["occurrenceID"] as? String else {
+                    return true
+                }
+                return !activeOccurrenceIDs.contains(occurrenceID)
+            }
+            .map(\.request.identifier)
+        if !staleDeliveredTodoIDs.isEmpty {
+            center.removeDeliveredNotifications(
+                withIdentifiers: staleDeliveredTodoIDs
+            )
+        }
+
+        // Keep headroom for inventory, expense and interval reminders in the
+        // system-wide pending-notification limit. Later synchronizations roll
+        // this window forward.
+        for candidate in candidates
+            .filter({ $0.fireAt > now })
+            .sorted(by: { $0.fireAt < $1.fireAt })
+            .prefix(48) {
+            var components = calendar.dateComponents(
+                [.year, .month, .day, .hour, .minute, .second],
+                from: candidate.fireAt
+            )
+            components.calendar = calendar
+            components.timeZone = calendar.timeZone
+            do {
+                try await center.add(
+                    UNNotificationRequest(
+                        identifier: candidate.identifier,
+                        content: candidate.content,
+                        trigger: UNCalendarNotificationTrigger(
+                            dateMatching: components,
+                            repeats: false
+                        )
+                    )
+                )
+            } catch {
+                // A later activation/day/time-zone synchronization retries.
+            }
+        }
+    }
+
+    private func initialTodoNotification(
+        for occurrence: TodoOccurrence,
+        now: Date,
+        calendar: Calendar
+    ) -> TodoNotificationCandidate? {
+        let time = occurrence.notificationTime
+            ?? occurrence.startTime
+            ?? LocalTime(hour: 9, minute: 0)
+        guard let scheduledDay = occurrence.scheduledDay,
+              let fireAt = scheduledDay.date(
+            at: time,
+            calendar: calendar
+        ), fireAt > now else {
+            return nil
+        }
+        return TodoNotificationCandidate(
+            identifier: todoNotificationID(
+                occurrenceID: occurrence.id.rawValue,
+                kind: "initial",
+                fireAt: fireAt
+            ),
+            fireAt: fireAt,
+            content: todoNotificationContent(
+                for: occurrence,
+                body: occurrence.title,
+                kind: "initial"
+            )
+        )
+    }
+
+    private func followUpNotifications(
+        for occurrence: TodoOccurrence,
+        now: Date,
+        through endDate: Date,
+        calendar: Calendar,
+        language: AppLanguage
+    ) -> [TodoNotificationCandidate] {
+        guard let scheduledDay = occurrence.scheduledDay else { return [] }
+        let body = language == .zh ? "完成了吗？" : "Is this done?"
+        return TodoFollowUpSchedule.dates(
+            scheduledDay: scheduledDay,
+            now: now,
+            through: endDate,
+            calendar: calendar
+        ).map { fireAt in
+            TodoNotificationCandidate(
+                identifier: todoNotificationID(
+                    occurrenceID: occurrence.id.rawValue,
+                    kind: "follow-up",
+                    fireAt: fireAt
+                ),
+                fireAt: fireAt,
+                content: todoNotificationContent(
+                    for: occurrence,
+                    body: body,
+                    kind: "follow-up"
+                )
+            )
+        }
+    }
+
+    private func todoNotificationContent(
+        for occurrence: TodoOccurrence,
+        body: String,
+        kind: String
+    ) -> UNMutableNotificationContent {
+        let content = baseNotificationContent(body: body)
+        if kind == "follow-up" {
+            content.title = occurrence.title
+        }
+        content.categoryIdentifier = MomentNotificationDelegate
+            .todoCategoryIdentifier
+        content.userInfo = [
+            "route": "todos",
+            "todoID": occurrence.todoID,
+            "occurrenceID": occurrence.id.rawValue,
+            "kind": kind
+        ]
+        return content
+    }
+
+    private func todoNotificationID(
+        occurrenceID: String,
+        kind: String,
+        fireAt: Date
+    ) -> String {
+        let timestamp = Int64(fireAt.timeIntervalSince1970.rounded())
+        return "moment.todo.\(occurrenceID).\(kind).\(timestamp)"
     }
 
     private func schedule(

@@ -20,12 +20,15 @@ struct DashboardWorkspace: View {
         expenseDueBuckets.contains { $0.amount > 0 }
     }
 
-    private var openTodos: [TodoRecord] {
-        model.todos.filter { !$0.isCompleted }
+    private var openTodos: [TodoOccurrence] {
+        model.todayOccurrences.filter { $0.state == .active }
     }
 
-    private var completedTodoCount: Int {
-        model.todos.filter(\.isCompleted).count
+    private var overdueTodoCount: Int {
+        openTodos.filter {
+            guard let day = $0.scheduledDay else { return false }
+            return day < model.currentDay
+        }.count
     }
 
     var body: some View {
@@ -275,7 +278,10 @@ struct DashboardWorkspace: View {
 
     private var actionSummaries: some View {
         LifeCardGrid {
-            dashboardButton(workspace: .todos) {
+            Button {
+                model.workspace = .todos
+                model.todoViewMode = .todos
+            } label: {
                 LifeMetricCard(
                     title: model.text("dashboard.todos"),
                     value: "\(openTodos.count)",
@@ -284,6 +290,9 @@ struct DashboardWorkspace: View {
                     tint: openTodos.isEmpty ? .green : .blue
                 )
             }
+            .buttonStyle(.plain)
+            .help(model.text("dashboard.accessibility.open"))
+            .accessibilityHint(model.text("dashboard.accessibility.open"))
 
             dashboardButton(workspace: .inventory) {
                 LifeMetricCard(
@@ -361,7 +370,7 @@ struct DashboardWorkspace: View {
     }
 
     private var todoDetail: String {
-        "\(completedTodoCount) \(model.text("dashboard.todos.completed"))"
+        "\(overdueTodoCount) \(model.text("dashboard.todos.overdue"))"
     }
 
     private var allocationColors: [Color] {

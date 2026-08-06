@@ -291,7 +291,8 @@
     "common.daysBefore" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "days before" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "天前" } } } },
     "common.edit" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑" } } } },
     "common.notes" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notes" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "备注" } } } },
-    "dashboard.todos" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Open To-Dos" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未完成待办" } } } },
+    "dashboard.todos" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today's To-Dos" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日待办" } } } },
+    "dashboard.todos.overdue" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "overdue" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "项逾期" } } } },
     "dashboard.todos.completed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "completed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已完成" } } } },
     "dashboard.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Life Overview" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "生活总览" } } } },
     "dashboard.overview" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today at a glance" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日概览" } } } },
@@ -310,7 +311,7 @@
     "dashboard.review.scheduled.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Zaki will remind you at the weekly review time." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "Zaki 将在设定的每周盘点时间提醒你。" } } } },
     "dashboard.review.start" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Review" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开始盘点" } } } },
     "dashboard.notifications.off" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notifications are off" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知未开启" } } } },
-    "dashboard.notifications.off.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications to receive review and payment reminders." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开启后才能收到盘点和扣费提醒。" } } } },
+    "dashboard.notifications.off.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Enable notifications to receive to-do, review, and payment reminders." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开启后才能收到待办、盘点和扣费提醒。" } } } },
     "dashboard.financial" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Financial Assets" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产" } } } },
     "dashboard.financial.current" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Current Financial Value" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "金融资产现值" } } } },
     "dashboard.financial.unrealized" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unrealized P/L" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未实现盈亏" } } } },
@@ -571,8 +572,8 @@
     },
     "reminders.new" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Reminder" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建提醒" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "New Timer Reminder" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建计时提醒" } }
       }
     },
     "reminders.next" : {
@@ -617,8 +618,8 @@
     "reminders.try.failed.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Check notification permission and try again." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "请检查通知权限后重试。" } } } },
     "reminders.title" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminders" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Timer Reminders" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "计时提醒" } }
       }
     },
     "settings.about" : {
@@ -851,8 +852,8 @@
     },
     "sidebar.reminders" : {
       "localizations" : {
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Reminders" } },
-        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "提醒" } }
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Timer Reminders" } },
+        "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "计时提醒" } }
       }
     },
     "sidebar.tools" : {
@@ -867,8 +868,29 @@
         "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待办" } }
       }
     },
+    "todos.calendar.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a to-do for the selected day." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "为选中的日期添加一项待办。" } } } },
+    "todos.calendar.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Nothing scheduled" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "当天没有安排" } } } },
+    "todos.calendar.nextMonth" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Next Month" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "下个月" } } } },
+    "todos.calendar.previousMonth" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Previous Month" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "上个月" } } } },
+    "todos.calendar.today" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今天" } } } },
     "todos.completed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已完成" } } } },
     "todos.delete" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除" } } } },
+    "todos.delete.recurring.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Delete recurring to-do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "删除重复待办" } } } },
+    "todos.editScope.onlyThis" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Only This Occurrence" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "仅本次" } } } },
+    "todos.editScope.thisAndFuture" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "This and Future Occurrences" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "本次及以后" } } } },
+    "todos.editor.date" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日期" } } } },
+    "todos.editor.edit" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Edit To-Do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "编辑待办" } } } },
+    "todos.editor.editScope" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Apply Changes To" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "修改范围" } } } },
+    "todos.editor.followUp" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Ask Until Completed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "持续询问直到完成" } } } },
+    "todos.editor.new" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "New To-Do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建待办" } } } },
+    "todos.editor.notification" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notify Me" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知我" } } } },
+    "todos.editor.notificationTime" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Notification Time" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "通知时间" } } } },
+    "todos.editor.recurrence" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Repeat" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重复" } } } },
+    "todos.editor.scheduled" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Schedule a Date" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "安排日期" } } } },
+    "todos.editor.startTime" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Start Time" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "开始时间" } } } },
+    "todos.editor.startTime.value" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Time" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "时间" } } } },
+    "todos.editor.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "To-Do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待办内容" } } } },
+    "todos.editor.title.placeholder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "What needs to be done?" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "需要做什么？" } } } },
     "todos.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Type above and press Return to add one." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "在上方输入内容，按回车即可添加。" } } } },
     "todos.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "No to-dos yet" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "还没有待办" } } } },
     "todos.markCompleted" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Mark as Completed" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "标记为已完成" } } } },
@@ -876,9 +898,33 @@
     "todos.new" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "New To-Do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新建待办" } } } },
     "todos.open" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "To-Do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待办事项" } } } },
     "todos.quickAdd" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "New to-do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "新待办" } } } },
+    "todos.quickAdd.day.placeholder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add something for this day" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加这一天要做的事" } } } },
     "todos.quickAdd.hint" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Press Return to add" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "按回车添加" } } } },
     "todos.quickAdd.placeholder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Type a to-do and press Return" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "输入待办，按回车添加" } } } },
+    "todos.quickAdd.today.placeholder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add something for today" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加今天要做的事" } } } },
+    "todos.quickAdd.unscheduled.placeholder" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add an unscheduled to-do" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加未安排日期的待办" } } } },
+    "todos.recurrence.monthly" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Every Month" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每月" } } } },
+    "todos.recurrence.monthly.short" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Monthly" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "每月" } } } },
+    "todos.recurrence.none" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Does Not Repeat" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "不重复" } } } },
+    "todos.section.overdue" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Overdue" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "逾期" } } } },
+    "todos.section.recurring" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Recurring" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "重复计划" } } } },
+    "todos.section.skipped" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Skipped" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已跳过" } } } },
+    "todos.section.today" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today’s To-Dos" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日待办" } } } },
+    "todos.section.today.completed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Completed Today" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日已完成" } } } },
+    "todos.section.today.timed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Scheduled Today" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日定时" } } } },
+    "todos.section.today.untimed" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Any Time Today" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日无时间" } } } },
+    "todos.section.unscheduled" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Unscheduled" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "未安排" } } } },
+    "todos.section.upcoming" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Upcoming" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "即将开始" } } } },
+    "todos.state.history" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Historical occurrence" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "历史发生期" } } } },
+    "todos.state.skipped" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Skipped" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "已跳过" } } } },
+    "todos.today.empty.body" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a to-do or choose a future day in Calendar." } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "添加一项待办，或在日历中安排未来事项。" } } } },
+    "todos.today.empty.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today is clear" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今天暂无待办" } } } },
     "todos.title" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "To-Dos" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待办" } } } },
+    "todos.view" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "View" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "视图" } } } },
+    "todos.view.all" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "All" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "全部" } } } },
+    "todos.view.calendar" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Calendar" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "日历" } } } },
+    "todos.view.today" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "Today" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "今日" } } } },
+    "todos.view.todos" : { "localizations" : { "en" : { "stringUnit" : { "state" : "translated", "value" : "To-Dos" } }, "zh-Hans" : { "stringUnit" : { "state" : "translated", "value" : "待办" } } } },
     "status.migrated" : {
       "localizations" : {
         "en" : { "stringUnit" : { "state" : "translated", "value" : "Your reminders and bookmarks were imported." } },

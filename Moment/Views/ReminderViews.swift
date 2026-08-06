@@ -117,7 +117,7 @@ private struct ReminderRow: View {
                 .symbolRenderingMode(.hierarchical)
                 .foregroundStyle(reminder.isEnabled ? Color.accentColor : .secondary)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(kind: .accent))
             .help(
                 reminder.isEnabled
                     ? model.text("reminders.pause")
@@ -158,7 +158,7 @@ private struct ReminderRow: View {
                     Image(systemName: "bell.badge")
                 }
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(kind: .accent))
             .help(model.text("reminders.try.help"))
             .disabled(previewing)
         }

@@ -330,7 +330,7 @@ struct FileBrowserWorkspace: View {
                     .frame(maxWidth: .infinity)
                     .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(size: 24))
             .foregroundStyle(.secondary)
             .frame(height: 30)
             .help(model.text("file.favorite.add"))
@@ -509,7 +509,8 @@ struct FileBrowserWorkspace: View {
             } label: {
                 Image(systemName: "xmark")
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(size: 24))
+            .help(model.text("common.close"))
         }
         .font(.callout)
         .padding(.horizontal, 12)

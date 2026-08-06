@@ -106,6 +106,9 @@ struct ContentView: View {
         .sheet(item: $model.reminderDraft) { draft in
             ReminderEditorView(model: model, initialDraft: draft)
         }
+        .sheet(item: $model.todoDraft) { draft in
+            TodoEditorView(model: model, initialDraft: draft)
+        }
         .sheet(isPresented: $model.showingInventoryReview) {
             InventoryReviewView(model: model)
         }
@@ -122,6 +125,31 @@ struct ContentView: View {
             }
             Button(model.text("reminders.delete"), role: .destructive) {
                 model.confirmDelete()
+            }
+        }
+        .confirmationDialog(
+            model.text("todos.delete.recurring.title"),
+            isPresented: Binding(
+                get: { model.pendingTodoDeletion != nil },
+                set: { if !$0 { model.pendingTodoDeletion = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
+            Button(model.text("todos.editScope.onlyThis"), role: .destructive) {
+                model.confirmTodoDeletion(scope: .onlyThis)
+            }
+            Button(
+                model.text("todos.editScope.thisAndFuture"),
+                role: .destructive
+            ) {
+                model.confirmTodoDeletion(scope: .thisAndFuture)
+            }
+            Button(model.text("common.cancel"), role: .cancel) {
+                model.pendingTodoDeletion = nil
+            }
+        } message: {
+            if let occurrence = model.pendingTodoDeletion {
+                Text(occurrence.title)
             }
         }
         .overlay(alignment: .top) {
@@ -149,7 +177,7 @@ private struct StatusBanner: View {
             Button(action: dismiss) {
                 Image(systemName: "xmark")
             }
-            .buttonStyle(.plain)
+            .buttonStyle(HoverIconButtonStyle(size: 24))
         }
         .font(.callout)
         .padding(.horizontal, 12)

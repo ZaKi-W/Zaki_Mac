@@ -111,7 +111,7 @@ struct InventoryItemDetailView: View {
                 } label: {
                     Image(systemName: "xmark")
                 }
-                .buttonStyle(.borderless)
+                .buttonStyle(HoverIconButtonStyle(size: 26))
                 .help(model.text("common.close"))
             }
             .padding(20)
